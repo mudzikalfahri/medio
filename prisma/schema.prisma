@@ -14,7 +14,7 @@ model User {
   email     String?  @unique
   image     String?
   role      Role     @default(USER)
-  bookmarks Link[]
+  post      Post[]
 }
 
 enum Role {
@@ -22,14 +22,14 @@ enum Role {
   ADMIN
 }
 
-model Link {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String
-  description String
-  url         String
-  imageUrl    String
-  category    String
-  users       User[]
+model Post {
+  id        String   @id @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  body      String
+  thumbnail String
+  category  String
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
 }

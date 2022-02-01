@@ -6,6 +6,18 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+        "paths": {
+            "@components/*": ["components/*"],
+            "@styles/*": ["styles/*"],
+            "@pages/*": ["pages/*"],
+            "@utils/*": ["utils/*"],
+            "@graphql/*": ["graphql/*"],
+            "@prisma/*": ["prisma/*"],
+            "@lib/*": ["lib/*"],
+            "@interfaces/*": ["interfaces/*"],
+            "@hooks/*": ["hooks/*"]
+        },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
