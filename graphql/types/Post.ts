@@ -12,11 +12,11 @@ export const Post = objectType({
     t.string("authorId");
     t.field("author", {
       type: User,
-      async resolve(_parent, _args, ctx) {
+      async resolve(parent, _args, ctx) {
         return await ctx.prisma.post
           .findUnique({
             where: {
-              id: _parent.id,
+              id: parent.id,
             },
           })
           .author();
