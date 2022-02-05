@@ -11,7 +11,7 @@ export const Post = objectType({
     t.string("category");
     t.string("authorId");
     t.field("author", {
-      type: User,
+      type: "User",
       async resolve(parent, _args, ctx) {
         return await ctx.prisma.post
           .findUnique({
