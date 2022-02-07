@@ -1,5 +1,4 @@
 import { objectType, extendType, idArg } from "nexus";
-import { User } from "./User";
 
 export const Post = objectType({
   name: "Post",

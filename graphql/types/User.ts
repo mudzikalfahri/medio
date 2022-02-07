@@ -1,5 +1,4 @@
 import { enumType, extendType, objectType } from "nexus";
-import { Post } from "./Post";
 
 export const User = objectType({
   name: "User",
@@ -10,7 +9,7 @@ export const User = objectType({
     t.string("image");
     t.field("role", { type: Role });
     t.list.field("posts", {
-      type: Post,
+      type: "Post",
       async resolve(parent, _args, ctx) {
         return await ctx.prisma.user
           .findUnique({
