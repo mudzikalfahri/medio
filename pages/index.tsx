@@ -1,13 +1,31 @@
 import Header from "@components/Header";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
+import HeaderIcon from "@components/HeaderIcon";
+import PostCard from "@components/PostCard";
 
 export default function Home() {
   return (
     <div className="bg-white text-gray-800">
       <Header />
       <div className="max-w-6xl mx-auto grid grid-cols-3 px-4 h-screen">
-        <div className="col-span-2 pt-28"></div>
+        <div className="col-span-2 pt-32 pr-10">
+          {/* Menu bar */}
+          <div className="border-b border-gray-200 flex items-center">
+            <div className="py-2 px-5 border-b border-purple-700 font-semibold w-max">
+              Recomended
+            </div>
+            <div className="py-2 px-5 w-max">Popular</div>
+            <div className="py-2 px-5 w-max">Today</div>
+          </div>
+          {/* Post */}
+          <div className="pt-10">
+            <PostCard />
+            <PostCard />
+            <PostCard />
+          </div>
+        </div>
         <div className="col-span-1 border-l border-gray-200 pl-10 pt-28">
           <div className="border-b border-gray-200 flex pb-8 flex-col items-center">
             <h1 className="w-2/3 text-gray-600 text-center font-medium">
