@@ -12,7 +12,7 @@ const PostCard = () => (
       />
     </div>
     <div className="w-2/3">
-      <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
+      <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-800 text-xs">
         Website
       </div>
       <h1 className="text-2xl font-bold mt-1">
@@ -34,7 +34,7 @@ const PostCard = () => (
           ></Image>
           <div>
             <p className="text-sm">Richard koh</p>
-            <p className="text-xs text-purple-400">4 Mins ago</p>
+            <p className="text-xs text-purple-500">4 Mins ago</p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
