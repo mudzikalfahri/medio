@@ -2,13 +2,13 @@ import Image from "next/image";
 
 const PostCard = () => (
   <div className="flex space-x-6 mb-10">
-    <div className="w-1/3">
+    <div className="w-1/3 overflow-hidden">
       <Image
         src="/image.jpg"
         width="600"
         height="600"
         alt="pic"
-        className="object-cover w-full rounded-md"
+        className="object-cover w-full rounded-lg"
       />
     </div>
     <div className="w-2/3">
