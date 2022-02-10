@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import PostCard from "@components/PostCard";
 import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -35,10 +36,19 @@ export default function Home() {
           <PostCard />
           <PostCard />
           <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
         </div>
       </div>
       <div className="w-1/3 border-l border-gray-200 pl-10 pt-28">
-        <div className="sticky top-0">
+        <div className="sticky top-0 overflow-y-auto">
           <div className="border-b border-gray-200 flex pb-8 flex-col items-center">
             <h1 className="w-2/3 text-gray-800 text-center font-medium">
               Login now then you can post and comment as you like
@@ -75,6 +85,55 @@ export default function Home() {
                 Art
               </div>
             </div>
+          </div>
+          <div className="mt-10">
+            <h1 className="font-semibold">Saved Posts</h1>
+            <div className="py-6 flex flex-col space-y-6">
+              {/* SavedCard */}
+              <div className="">
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src="/profile.jfif"
+                    width="20"
+                    height="20"
+                    objectFit="cover"
+                    className="rounded-full"
+                  />
+                  <p className="text-xs font-semibold">Richard Koh</p>
+                </div>
+                <p className="font-bold mt-2">
+                  How Much Money I Made Playing Axie Infinity for One Week
+                </p>
+                <div className="flex mt-2 items-center space-x-2">
+                  <p className="text-xs text-purple-600">26 Jan</p>
+                  <span className="text-gray-200">•</span>
+                  <p className="text-xs text-gray-500">6 mins read</p>
+                </div>
+              </div>
+              <div className="">
+                <div className="flex items-center space-x-2">
+                  <Image
+                    src="/profile.jfif"
+                    width="20"
+                    height="20"
+                    objectFit="cover"
+                    className="rounded-full"
+                  />
+                  <p className="text-xs font-semibold">Richard Koh</p>
+                </div>
+                <p className="font-bold mt-2">
+                  How Much Money I Made Playing Axie Infinity for One Week
+                </p>
+                <div className="flex mt-2 items-center space-x-2">
+                  <p className="text-xs text-purple-600">26 Jan</p>
+                  <span className="text-gray-200">•</span>
+                  <p className="text-xs text-gray-500">6 mins read</p>
+                </div>
+              </div>
+            </div>
+            <p className="text-xs cursor-pointer hover:underline">
+              See all (6)
+            </p>
           </div>
         </div>
       </div>

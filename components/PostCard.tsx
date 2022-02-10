@@ -12,8 +12,12 @@ const PostCard = () => (
       />
     </div>
     <div className="w-2/3">
-      <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-800 text-xs">
-        Website
+      <div className="flex items-center space-x-2">
+        <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-800 text-xs">
+          Website
+        </div>
+        <span className="text-gray-200">•</span>
+        <p className="text-xs text-gray-500">6 mins read</p>
       </div>
       <h1 className="text-2xl font-bold mt-1">
         How Much Money I Made Playing Axie Infinity for One Week
