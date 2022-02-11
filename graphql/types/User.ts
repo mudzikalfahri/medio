@@ -7,7 +7,6 @@ export const User = objectType({
     t.string("name");
     t.string("email");
     t.string("image");
-    t.field("role", { type: Role });
     t.list.field("posts", {
       type: "Post",
       async resolve(parent, _args, ctx) {
@@ -21,11 +20,6 @@ export const User = objectType({
       },
     });
   },
-});
-
-const Role = enumType({
-  name: "Role",
-  members: ["USER", "ADMIN"],
 });
 
 export const usersQuery = extendType({

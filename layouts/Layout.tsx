@@ -11,7 +11,7 @@ function Layout({ children, meta }: ILayoutProps) {
     <div className="bg-white text-gray-800">
       {meta}
       <Header />
-      <div className="max-w-6xl mx-auto flex px-4 h-screen">{children}</div>
+      {children}
     </div>
   );
 }
