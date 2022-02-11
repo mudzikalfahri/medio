@@ -16,7 +16,7 @@ export const User = objectType({
               id: parent.id,
             },
           })
-          .post();
+          .posts();
       },
     });
   },
