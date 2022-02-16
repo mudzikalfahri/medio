@@ -3,12 +3,13 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import Button from "./Button";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
   const { data, status } = useSession();
   return (
-    <header className="fixed text-gray-800 top-0 left-0 py-3 w-full shadow-md shadow-gray-400/10 z-30 bg-white">
+    <header className="fixed text-gray-800 top-0 left-0 py-3 w-full shadow-md shadow-gray-400/10 z-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
         <div className="logo flex items-center space-x-1">
           <svg
@@ -83,11 +84,7 @@ const Header = () => {
             }
           />
           {status !== "loading" ? (
-            !data && (
-              <div className="py-1.5 px-5 ml-2 bg-purple-100 rounded-full text-purple-800">
-                Login
-              </div>
-            )
+            !data && <Button dark={false} text="Login" />
           ) : (
             <div className="bg-gray-200 animate-pulse w-16 ml-2 h-10 rounded-full"></div>
           )}
