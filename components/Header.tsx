@@ -84,7 +84,7 @@ const Header = () => {
             }
           />
           {status !== "loading" ? (
-            !data && <Button dark={false} text="Login" />
+            !data && <Button dark={true} text="Login" />
           ) : (
             <div className="bg-gray-200 animate-pulse w-16 ml-2 h-10 rounded-full"></div>
           )}
@@ -95,8 +95,8 @@ const Header = () => {
             >
               <Image
                 src={data.user.image}
-                width="35"
-                height="35"
+                width="40"
+                height="40"
                 alt="profile"
                 className="rounded-full"
               />
