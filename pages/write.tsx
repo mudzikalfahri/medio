@@ -2,12 +2,14 @@ import { NextPage } from "next";
 import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import Button from "@components/Button";
+import PreviewPost from "@components/PreviewPost";
+import PublishModal from "@components/PublishModal";
 
-const Post: NextPage = () => {
+const Write: NextPage = () => {
   const [body, setBody] = useState<string>("");
   const [preview, setPreview] = useState<Boolean>(false);
+  const [publish, setPublish] = useState<Boolean>(false);
 
   useEffect(() => {
     preview
@@ -27,9 +29,10 @@ const Post: NextPage = () => {
       <div className="fixed w-full bg-white shadow-lg bottom-0 py-4 z-30 left-0">
         <div className="max-w-5xl mx-auto flex justify-between items-center">
           <p>
-            Start writing and you can see the preview by clicking preview button
+            Start writing and the preview can be shown by clicking preview
+            button
           </p>
-          <Button dark={true} text="Publish" />
+          <Button dark={true} click={() => setPublish(true)} text="Publish" />
         </div>
       </div>
       <div className="max-w-5xl mx-auto pt-24 pb-20">
@@ -75,24 +78,10 @@ const Post: NextPage = () => {
           />
         </div>
       </div>
-      {preview && (
-        <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30">
-          <div className="flex py-4 px-10 justify-between fixed top-0 left-0 w-full items-center">
-            <Button
-              click={() => setPreview(false)}
-              dark={false}
-              text="< Back"
-            />
-          </div>
-          <div className="max-w-4xl mx-auto rounded-2xl min-g-screen bg-white my-20">
-            <article className="prose prose-purple py-16 mx-auto">
-              <ReactMarkdown children={body} />
-            </article>
-          </div>
-        </div>
-      )}
+      {preview && <PreviewPost close={() => setPreview(false)} body={body} />}
+      {publish && <PublishModal />}
     </Layout>
   );
 };
 
-export default Post;
+export default Write;
