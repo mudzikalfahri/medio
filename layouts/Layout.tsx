@@ -8,7 +8,7 @@ type ILayoutProps = {
 
 function Layout({ children, meta }: ILayoutProps) {
   return (
-    <div className="bg-white text-gray-700">
+    <div className="bg-white text-gray-800">
       {meta}
       <Header />
       {children}
