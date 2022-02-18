@@ -13,6 +13,7 @@ function Button({
 }) {
   return (
     <button
+      type="submit"
       onClick={click}
       disabled={disabled}
       className={

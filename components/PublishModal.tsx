@@ -1,6 +1,16 @@
 import Button from "./Button";
+import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
-function PublishModal({ close }: { close: () => void }) {
+function PublishModal({ close, body }: { close: () => void; body: string }) {
+  const { data } = useSession();
+  console.log(data);
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    const { title, category } = data;
+    const variables = { title, category, body, thumbnail: "thumbnail" };
+  };
+
   return (
     <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 flex items-center justify-center">
       <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
@@ -24,24 +34,28 @@ function PublishModal({ close }: { close: () => void }) {
         <p className="text-center text-gray-500 text-sm w-2/3 mt-2">
           Make a title and category that can be reachable over the community
         </p>
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <p className="self-start ml-1 text-sm mt-6 text-gray-500">
             Content Title
           </p>
           <input
             type="text"
+            {...register("title", { required: true })}
             placeholder="How Website Works"
             className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
           />
           <p className="self-start ml-1 text-sm mt-2 text-gray-500">Category</p>
-          <select className="select[multiple] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 text-sm border-white focus:border rounded-xl bg-gray-100">
+          <select
+            {...register("category", { required: true })}
+            className="select[multiple] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 text-sm border-white focus:border rounded-xl bg-gray-100"
+          >
             <option value="" disabled selected>
               Select your option
             </option>
-            <option value="">Website</option>
-            <option value="">React</option>
-            <option value="">CSS</option>
-            <option value="">Android</option>
+            <option value="website">Website</option>
+            <option value="react">React</option>
+            <option value="css">CSS</option>
+            <option value="android">Android</option>
           </select>
           <div className="mx-1 flex space-x-2 self-start mt-5">
             <input
@@ -55,7 +69,7 @@ function PublishModal({ close }: { close: () => void }) {
           </div>
           <div className="flex items-center space-x-2 justify-end mt-6">
             <Button text="Cancel" click={close} dark={false} />
-            <Button disabled={true} text="Publish Now" dark={true} />
+            <Button text="Publish Now" dark={true} />
           </div>
         </form>
       </div>

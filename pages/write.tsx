@@ -79,7 +79,7 @@ const Write: NextPage = () => {
         </div>
       </div>
       {preview && <PreviewPost close={() => setPreview(false)} body={body} />}
-      {publish && <PublishModal />}
+      {publish && <PublishModal close={() => setPublish(false)} body={body} />}
     </Layout>
   );
 };

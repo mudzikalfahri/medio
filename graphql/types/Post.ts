@@ -1,4 +1,14 @@
-import { objectType, extendType, idArg } from "nexus";
+import {
+  objectType,
+  extendType,
+  idArg,
+  stringArg,
+  nonNull,
+  asNexusMethod,
+} from "nexus";
+import { GraphQLDate } from "graphql-iso-date";
+import { Post as PostInterface } from "@interfaces/";
+export const GQLDate = asNexusMethod(GraphQLDate, "date");
 
 export const Post = objectType({
   name: "Post",
@@ -9,6 +19,7 @@ export const Post = objectType({
     t.string("thumbnail");
     t.string("category");
     t.string("authorId");
+    t.date("createdAt");
     t.field("author", {
       type: "User",
       async resolve(parent, _args, ctx) {
@@ -42,6 +53,39 @@ export const PostsQuery = extendType({
             id: id,
           },
         });
+      },
+    });
+  },
+});
+
+export const PostMutation = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.field("createPost", {
+      type: "Post",
+      args: {
+        title: nonNull(stringArg()),
+        body: nonNull(stringArg()),
+        category: nonNull(stringArg()),
+        thumbnail: nonNull(stringArg()),
+        authorId: nonNull(stringArg()),
+      },
+      resolve(
+        _root,
+        { title, body, category, thumbnail, authorId }: PostInterface,
+        ctx
+      ) {
+        if (ctx.session) {
+          return ctx.prisma.create({
+            data: {
+              title,
+              body,
+              category,
+              thumbnail,
+              authorId,
+            },
+          });
+        }
       },
     });
   },
