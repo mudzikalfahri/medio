@@ -1,4 +1,4 @@
-import { enumType, extendType, objectType } from "nexus";
+import { extendType, objectType, stringArg } from "nexus";
 
 export const User = objectType({
   name: "User",
@@ -29,6 +29,13 @@ export const usersQuery = extendType({
       type: "User",
       resolve(_parent, _args, ctx) {
         return ctx.prisma.user.findMany();
+      },
+    });
+    t.nonNull.list.field("user", {
+      type: "User",
+      args: { email: stringArg() },
+      resolve(_parent, { email }: { email: string }, ctx) {
+        return ctx.prisma.user.findMany({ where: { email: email } });
       },
     });
   },

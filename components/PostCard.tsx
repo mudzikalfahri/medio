@@ -13,7 +13,7 @@ const PostCard = () => (
     </div>
     <div className="w-2/3">
       <div className="flex items-center space-x-2">
-        <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-800 text-xs">
+        <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
           Website
         </div>
         <span className="text-gray-200">•</span>

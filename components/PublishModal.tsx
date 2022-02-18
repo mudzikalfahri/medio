@@ -1,11 +1,10 @@
 import Button from "./Button";
 import { useForm } from "react-hook-form";
-import { useSession } from "next-auth/react";
+import { useUser } from "@hooks/useUser";
 
 function PublishModal({ close, body }: { close: () => void; body: string }) {
-  const { data } = useSession();
-  console.log(data);
   const { register, handleSubmit } = useForm();
+  const { data, loading } = useUser();
   const onSubmit = (data) => {
     const { title, category } = data;
     const variables = { title, category, body, thumbnail: "thumbnail" };
@@ -46,10 +45,11 @@ function PublishModal({ close, body }: { close: () => void; body: string }) {
           />
           <p className="self-start ml-1 text-sm mt-2 text-gray-500">Category</p>
           <select
+            defaultValue="default"
             {...register("category", { required: true })}
             className="select[multiple] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 text-sm border-white focus:border rounded-xl bg-gray-100"
           >
-            <option value="" disabled selected>
+            <option value="default" disabled>
               Select your option
             </option>
             <option value="website">Website</option>

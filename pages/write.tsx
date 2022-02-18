@@ -12,10 +12,10 @@ const Write: NextPage = () => {
   const [publish, setPublish] = useState<Boolean>(false);
 
   useEffect(() => {
-    preview
+    preview || publish
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "unset");
-  }, [preview]);
+  }, [preview, publish]);
 
   return (
     <Layout

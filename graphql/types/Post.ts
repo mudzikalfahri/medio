@@ -7,7 +7,7 @@ import {
   asNexusMethod,
 } from "nexus";
 import { GraphQLDate } from "graphql-iso-date";
-import { Post as PostInterface } from "@interfaces/";
+import { Post as IPost } from "@interfaces/";
 export const GQLDate = asNexusMethod(GraphQLDate, "date");
 
 export const Post = objectType({
@@ -72,7 +72,7 @@ export const PostMutation = extendType({
       },
       resolve(
         _root,
-        { title, body, category, thumbnail, authorId }: PostInterface,
+        { title, body, category, thumbnail, authorId }: IPost,
         ctx
       ) {
         if (ctx.session) {

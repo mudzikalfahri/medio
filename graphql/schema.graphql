@@ -25,6 +25,7 @@ type Post {
 type Query {
   post(id: ID): [Post!]
   posts: [Post!]
+  user(email: String): [User]!
   users: [User]!
 }
 

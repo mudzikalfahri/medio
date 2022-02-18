@@ -49,8 +49,8 @@ const DetailPost: NextPage = () => {
             className="rounded-lg"
           />
         </div>
-        <div className="max-w-2xl prose prose-lg prose-purple mx-auto">
-          {/* <ReactMarkdown children={text} /> */}
+        <div className="max-w-2xl prose prose-lg py-10 prose-purple mx-auto">
+          <ReactMarkdown children={text} />
         </div>
       </div>
     </Layout>
