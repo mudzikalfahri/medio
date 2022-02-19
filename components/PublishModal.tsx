@@ -4,7 +4,9 @@ import { useUser } from "@hooks/useUser";
 
 function PublishModal({ close, body }: { close: () => void; body: string }) {
   const { register, handleSubmit } = useForm();
-  const { data, loading } = useUser();
+  const { data, loading, authenticated } = useUser();
+  console.log(data, loading);
+
   const onSubmit = (data) => {
     const { title, category } = data;
     const variables = { title, category, body, thumbnail: "thumbnail" };

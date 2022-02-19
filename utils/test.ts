@@ -1,5 +1,6 @@
 export const text = `
 **Wefootwear E-commerce** is an example online shop built with Next js.
+stripe for processing the payment (test mode) (use card number: 4242 4242 4242 4242 to complete the payment). stripe for processing the payment (test mode) (use card number: 4242 4242 4242 4242 to complete the payment). stripe for processing the payment (test mode) (use card number: 4242 4242 4242 4242 to complete the payment). stripe for processing the payment (test mode) (use card number: 4242 4242 4242 4242 to complete the payment)
 [demo](https://wefootwear.vercel.app/)
 ## Stacks
 - [Next js](https://nextjs.org/) (React Framework)

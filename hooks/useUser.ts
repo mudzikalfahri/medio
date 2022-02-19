@@ -15,6 +15,12 @@ const UserById = gql`
 
 export const useUser = () => {
   const { data: session, status } = useSession();
+  if (!session)
+    return {
+      data: null,
+      loading: false,
+      authenticated: false,
+    };
   const { data, loading } = useQuery(UserById, {
     variables: {
       email: session.user.email,
@@ -24,5 +30,6 @@ export const useUser = () => {
   return {
     data: data?.user[0],
     loading: loading || status === "loading",
+    authenticated: true,
   };
 };
