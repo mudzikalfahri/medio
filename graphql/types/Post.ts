@@ -5,9 +5,10 @@ import {
   stringArg,
   nonNull,
   asNexusMethod,
+  intArg,
 } from "nexus";
 import { GraphQLDate } from "graphql-iso-date";
-import { Post as IPost } from "@interfaces/";
+import { Post as IPost } from "@interfaces/index";
 export const GQLDate = asNexusMethod(GraphQLDate, "date");
 
 export const Post = objectType({
@@ -16,8 +17,10 @@ export const Post = objectType({
     t.string("id");
     t.string("title");
     t.string("body");
+    t.string("headline");
     t.string("thumbnail");
     t.string("category");
+    t.int("minsRead");
     t.string("authorId");
     t.date("createdAt");
     t.field("author", {
@@ -66,19 +69,30 @@ export const PostMutation = extendType({
       args: {
         title: nonNull(stringArg()),
         body: nonNull(stringArg()),
+        headline: nonNull(stringArg()),
+        minsRead: nonNull(intArg()),
         category: nonNull(stringArg()),
         thumbnail: nonNull(stringArg()),
         authorId: nonNull(stringArg()),
       },
       resolve(
         _root,
-        { title, body, category, thumbnail, authorId }: IPost,
+        {
+          title,
+          body,
+          category,
+          thumbnail,
+          authorId,
+          headline,
+          minsRead,
+        }: IPost,
         ctx
       ) {
         if (ctx.session) {
-          return ctx.prisma.create({
+          return ctx.prisma.post.create({
             data: {
               title,
+              headline,
               body,
               category,
               thumbnail,

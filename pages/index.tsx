@@ -7,8 +7,11 @@ import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
+import { getAllPost } from "@graphql/queries";
 
 const Home: NextPage = () => {
+  const { data: dataPost, loading, error } = getAllPost();
+  console.log(dataPost);
   const { data } = useSession();
   return (
     <Layout
@@ -23,6 +26,7 @@ const Home: NextPage = () => {
         <div className="w-full md:w-2/3 pt-28 md:pr-10">
           <div className="rounded-full mb-6 flex items-center py-4 bg-gray-100 justify-center space-x-3">
             <h3>Share your ideas with millions of readers</h3>
+
             <Link href="/write" passHref>
               <div className="cursor-pointer py-1.5 px-4 bg-gray-800 text-white rounded-full text-sm">
                 Start Writing
@@ -39,13 +43,10 @@ const Home: NextPage = () => {
           </div>
           {/* Post */}
           <div className="pt-10">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {!loading &&
+              dataPost.posts.map((blog, idx) => (
+                <PostCard key={idx} blog={blog} />
+              ))}
           </div>
         </div>
         <div className="hidden md:inline md:w-1/3 border-l border-gray-200 pl-10 pt-28">

@@ -1,44 +1,36 @@
+import { Post } from "@interfaces/index";
 import Image from "next/image";
+import { timeAgo } from "@utils/dateformat";
 
-const PostCard = () => (
+const PostCard = ({ blog }: { blog: Post }) => (
   <div className="flex space-x-6 mb-10">
     <div className="w-1/3 overflow-hidden">
-      <Image
-        src="/image.jpg"
-        width="600"
-        height="600"
+      <img
+        src={blog.thumbnail}
         alt="pic"
-        className="object-cover w-full rounded-lg"
+        className="object-cover w-full h-full rounded-lg"
       />
     </div>
     <div className="w-2/3">
       <div className="flex items-center space-x-2">
         <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
-          Website
+          {blog.category}
         </div>
         <span className="text-gray-200">•</span>
-        <p className="text-xs text-gray-500">6 mins read</p>
+        <p className="text-xs text-gray-500">{blog.minsRead} mins read</p>
       </div>
-      <h1 className="text-2xl font-bold mt-1">
-        How Much Money I Made Playing Axie Infinity for One Week
-      </h1>
-      <p className="text-sm mt-2 text-gray-500">
-        Axie Infinity is one of the most popular play-to-earn cryptocurrency
-        games. It sports an active NFT marketplace, meaning you can play for
-        money. Axie Infinity is one of the most popular play-to-earn
+      <h1 className="text-2xl font-bold mt-1">{blog.title}</h1>
+      <p className="text-sm mt-2 text-gray-500 line-clamp-4 text-justify">
+        {blog.headline}
       </p>
       <div className="flex items-end justify-between mt-3">
         <div className="flex items-center space-x-3">
-          <Image
-            src="/profile.jfif"
-            width="35"
-            height="35"
-            objectFit="cover"
-            className="rounded-full"
-          ></Image>
+          <img src={blog.author.image} className="rounded-full w-10 h-10" />
           <div>
-            <p className="text-sm">Richard koh</p>
-            <p className="text-xs text-purple-500">4 Mins ago</p>
+            <p className="text-sm">{blog.author.name}</p>
+            <p className="text-xs text-purple-500">
+              Published {timeAgo(blog.createdAt)}
+            </p>
           </div>
         </div>
         <div className="flex items-center space-x-2">

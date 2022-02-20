@@ -66,6 +66,8 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String
+  minsRead  Int
+  headline  String   @default("Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde harum, dignissimos consequuntur dolore enim tempora provident iste quia aliquam sunt rerum, ea quisquam ducimus explicabo architecto, corporis pariatur? Quis, voluptate!")
   body      String
   thumbnail String
   category  String
