@@ -8,7 +8,7 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 type Mutation {
-  createPost(authorId: String!, body: String!, category: String!, minsRead: Int!, thumbnail: String!, title: String!): Post!
+  createPost(authorId: String!, body: String!, category: String!, headline: String!, minsRead: Int!, thumbnail: String!, title: String!): Post!
 }
 
 type Post {
@@ -22,6 +22,7 @@ type Post {
   minsRead: Int
   thumbnail: String
   title: String
+  views: Int
 }
 
 type Query {

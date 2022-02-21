@@ -21,7 +21,7 @@ const getAllPostQuery = gql`
   }
 `;
 
-export const getAllPost = () => {
+export const getAllPosts = () => {
   const { data, error, loading } = useQuery(getAllPostQuery);
   return { data, error, loading };
 };

@@ -21,6 +21,7 @@ export const Post = objectType({
     t.string("thumbnail");
     t.string("category");
     t.int("minsRead");
+    t.int("views");
     t.string("authorId");
     t.date("createdAt");
     t.field("author", {
@@ -92,8 +93,9 @@ export const PostMutation = extendType({
           return ctx.prisma.post.create({
             data: {
               title,
-              headline,
+              minsRead,
               body,
+              headline,
               category,
               thumbnail,
               authorId,

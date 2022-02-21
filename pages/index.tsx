@@ -7,11 +7,10 @@ import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
-import { getAllPost } from "@graphql/queries";
+import { getAllPosts } from "@graphql/queries";
 
 const Home: NextPage = () => {
-  const { data: dataPost, loading, error } = getAllPost();
-  console.log(dataPost);
+  const { data: dataPost, loading, error } = getAllPosts();
   const { data } = useSession();
   return (
     <Layout

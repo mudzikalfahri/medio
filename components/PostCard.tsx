@@ -1,9 +1,9 @@
 import { Post } from "@interfaces/index";
-import Image from "next/image";
 import { timeAgo } from "@utils/dateformat";
+import ReactMarkdown from "react-markdown";
 
 const PostCard = ({ blog }: { blog: Post }) => (
-  <div className="flex space-x-6 mb-10">
+  <div className="flex space-x-4 mb-10">
     <div className="w-1/3 overflow-hidden">
       <img
         src={blog.thumbnail}
@@ -20,9 +20,7 @@ const PostCard = ({ blog }: { blog: Post }) => (
         <p className="text-xs text-gray-500">{blog.minsRead} mins read</p>
       </div>
       <h1 className="text-2xl font-bold mt-1">{blog.title}</h1>
-      <p className="text-sm mt-2 text-gray-500 line-clamp-4 text-justify">
-        {blog.headline}
-      </p>
+      <p className="text-sm mt-2 text-gray-500 line-clamp-4">{blog.headline}</p>
       <div className="flex items-end justify-between mt-3">
         <div className="flex items-center space-x-3">
           <img src={blog.author.image} className="rounded-full w-10 h-10" />
