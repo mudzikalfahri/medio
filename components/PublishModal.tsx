@@ -59,6 +59,25 @@ function PublishModal({ close, body }: { close: () => void; body: string }) {
             <option value="css">CSS</option>
             <option value="android">Android</option>
           </select>
+          <p className="self-start ml-1 text-sm mt-2 text-gray-500">Headline</p>
+          <textarea
+            {...register("headline", { required: true })}
+            placeholder="Summary of The Content"
+            className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
+          />
+          <p className="self-start ml-1 text-sm mt-1 text-gray-500">
+            How Long It Takes
+          </p>
+          <div className="flex items-center">
+            <input
+              type="number"
+              {...register("minsRead", { required: true })}
+              placeholder="How Website Works"
+              min="0"
+              className="input[type='number'] placeholder:text-sm placeholder:text-gray-400 focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100 w-20"
+            />
+            <p className="text-sm text-gray-700 ml-4">Mins Read</p>
+          </div>
           <div className="mx-1 flex space-x-2 self-start mt-5">
             <input
               type="checkbox"

@@ -23,7 +23,10 @@ const PostCard = ({ blog }: { blog: Post }) => (
       <p className="text-sm mt-2 text-gray-500 line-clamp-4">{blog.headline}</p>
       <div className="flex items-end justify-between mt-3">
         <div className="flex items-center space-x-3">
-          <img src={blog.author.image} className="rounded-full w-10 h-10" />
+          <img
+            src={blog.author.image}
+            className="rounded-full w-10 h-10 border border-purple-200"
+          />
           <div>
             <p className="text-sm">{blog.author.name}</p>
             <p className="text-xs text-purple-500">
