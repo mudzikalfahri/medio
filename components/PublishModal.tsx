@@ -1,18 +1,55 @@
 import Button from "./Button";
 import { useForm } from "react-hook-form";
 import { useUser } from "@hooks/useUser";
+import { useMutation, gql } from "@apollo/client";
+
+const ADD_POST = gql`
+  mutation addPost(
+    $title: String!
+    $body: String!
+    $headline: String!
+    $minsRead: Int!
+    $category: String!
+    $thumbnail: String!
+    $authorId: String!
+  ) {
+    createPost(
+      title: $title
+      body: $body
+      headline: $headline
+      minsRead: $minsRead
+      category: $category
+      thumbnail: $thumbnail
+      authorId: $authorId
+    ) {
+      body
+      category
+      createdAt
+    }
+  }
+`;
 
 function PublishModal({ close, body }: { close: () => void; body: string }) {
   const { register, handleSubmit } = useForm();
   const { data, loading, authenticated } = useUser();
-  console.log(data, loading);
+  const [addPost, { data: dataMutate, loading: loadMutate, error }] =
+    useMutation(ADD_POST);
 
   const onSubmit = (data) => {
     const { title, category } = data;
-    const variables = { title, category, body, thumbnail: "thumbnail" };
+    const variables = {
+      title: "title",
+      category: "website",
+      body:"body1",
+      minsRead: 4,
+      headline:"lorem ipsum",
+      thumbnail: "/image.jpg",
+      authorId: data.id,
+    };
+    addPost({ variables: variables });
   };
 
-  return (
+  if (!loading) return (
     <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 flex items-center justify-center">
       <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
         <div className="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 text-purple-700">
@@ -66,13 +103,13 @@ function PublishModal({ close, body }: { close: () => void; body: string }) {
             className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
           />
           <p className="self-start ml-1 text-sm mt-1 text-gray-500">
-            How Long It Takes
+            Time Takes to Read
           </p>
           <div className="flex items-center">
             <input
               type="number"
               {...register("minsRead", { required: true })}
-              placeholder="How Website Works"
+              defaultValue="1"
               min="0"
               className="input[type='number'] placeholder:text-sm placeholder:text-gray-400 focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100 w-20"
             />
@@ -96,6 +133,10 @@ function PublishModal({ close, body }: { close: () => void; body: string }) {
       </div>
     </div>
   );
+
+  return (
+    <div className="w-full h-screen fixed top-0 left-0 bg-white flex items-center justify-center">loading</div>
+  )
 }
 
 export default PublishModal;
