@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           {/* Post */}
           <div className="pt-10">
             {!loading &&
-              dataPost.posts.map((blog, idx) => (
+              dataPost?.posts.map((blog, idx) => (
                 <PostCard key={idx} blog={blog} />
               ))}
           </div>
