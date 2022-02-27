@@ -23,7 +23,7 @@ export const Post = objectType({
     t.int("minsRead");
     t.int("views");
     t.string("authorId");
-    t.date("createdAt");
+    t.string("createdAt");
     t.field("author", {
       type: "User",
       async resolve(parent, _args, ctx) {

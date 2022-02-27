@@ -16,7 +16,7 @@ type Post {
   authorId: String
   body: String
   category: String
-  createdAt: Date
+  createdAt: String
   headline: String
   id: String
   minsRead: Int

@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import Button from "@components/Button";
 import PreviewPost from "@components/PreviewPost";
 import PublishModal from "@components/PublishModal";
+import { useUser } from "@hooks/useUser";
 
 const Write: NextPage = () => {
   const [body, setBody] = useState<string>("");
   const [preview, setPreview] = useState<Boolean>(false);
   const [publish, setPublish] = useState<Boolean>(false);
+  const { data, loading, authenticated } = useUser();
 
   useEffect(() => {
     preview || publish
@@ -79,7 +81,13 @@ const Write: NextPage = () => {
         </div>
       </div>
       {preview && <PreviewPost close={() => setPreview(false)} body={body} />}
-      {publish && <PublishModal close={() => setPublish(false)} body={body} />}
+      {publish && (
+        <PublishModal
+          close={() => setPublish(false)}
+          body={body}
+          session={data}
+        />
+      )}
     </Layout>
   );
 };

@@ -29,27 +29,35 @@ const ADD_POST = gql`
   }
 `;
 
-function PublishModal({ close, body }: { close: () => void; body: string }) {
+function PublishModal({
+  close,
+  body,
+  session,
+}: {
+  close: () => void;
+  body: string;
+  session: any;
+}) {
   const { register, handleSubmit } = useForm();
-  const { data, loading, authenticated } = useUser();
+
   const [addPost, { data: dataMutate, loading: loadMutate, error }] =
     useMutation(ADD_POST);
 
   const onSubmit = (data) => {
-    const { title, category } = data;
+    const { title, category, headline, minsRead } = data;
     const variables = {
-      title: "title",
-      category: "website",
-      body:"body1",
-      minsRead: 4,
-      headline:"lorem ipsum",
+      title,
+      category,
+      body,
+      minsRead: Number(minsRead),
+      headline,
       thumbnail: "/image.jpg",
-      authorId: data.id,
+      authorId: session.id,
     };
     addPost({ variables: variables });
   };
 
-  if (!loading) return (
+  return (
     <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 flex items-center justify-center">
       <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
         <div className="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 text-purple-700">
@@ -133,10 +141,6 @@ function PublishModal({ close, body }: { close: () => void; body: string }) {
       </div>
     </div>
   );
-
-  return (
-    <div className="w-full h-screen fixed top-0 left-0 bg-white flex items-center justify-center">loading</div>
-  )
 }
 
 export default PublishModal;
