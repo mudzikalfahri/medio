@@ -61,17 +61,24 @@ model VerificationToken {
   @@map("verificationtokens")
 }
 
+model Category {
+  id    String @id @unique @default(uuid())
+  name  String @unique
+  posts Post[]
+}
+
 model Post {
-  id        String   @id @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String
-  minsRead  Int
-  views     Int      @default(0)
-  headline  String   @default("Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde harum, dignissimos consequuntur dolore enim tempora provident iste quia aliquam sunt rerum, ea quisquam ducimus explicabo architecto, corporis pariatur? Quis, voluptate!")
-  body      String
-  thumbnail String
-  category  String
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  String?
+  id           String    @id @unique @default(uuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  title        String
+  minsRead     Int
+  views        Int       @default(0)
+  headline     String    @default("Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde harum, dignissimos consequuntur dolore enim tempora provident iste quia aliquam sunt rerum, ea quisquam ducimus explicabo architecto, corporis pariatur? Quis, voluptate!")
+  body         String
+  thumbnail    String
+  category     Category? @relation(fields: [categoryName], references: [name])
+  categoryName String
+  author       User?     @relation(fields: [authorId], references: [id])
+  authorId     String?
 }

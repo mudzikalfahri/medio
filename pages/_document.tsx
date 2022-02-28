@@ -19,6 +19,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <meta charSet="utf-8" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"

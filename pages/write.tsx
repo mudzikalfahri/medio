@@ -68,6 +68,7 @@ const Write: NextPage = () => {
               />
             </div>
           </div>
+
           <textarea
             onChange={(e) => setBody(e.target.value)}
             name="body"
