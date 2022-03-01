@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { extendType, objectType } from "nexus";
 
 export const Category = objectType({
   name: "Category",
@@ -15,6 +15,18 @@ export const Category = objectType({
             },
           })
           .posts();
+      },
+    });
+  },
+});
+
+export const categoriesQuery = extendType({
+  type: "Query",
+  definition(t) {
+    t.list.nonNull.field("categories", {
+      type: "Category",
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.category.findMany();
       },
     });
   },

@@ -12,7 +12,6 @@ import { getAllPosts } from "@graphql/queries";
 const Home: NextPage = () => {
   const { data: dataPost, loading, error } = getAllPosts();
   const { data } = useSession();
-  console.log(dataPost);
   return (
     <Layout
       meta={

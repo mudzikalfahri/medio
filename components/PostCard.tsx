@@ -16,7 +16,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
       <div className="w-2/3">
         <div className="flex items-center space-x-2">
           <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
-            {blog.category}
+            {blog.category.name}
           </div>
           <span className="text-gray-200">•</span>
           <p className="text-xs text-gray-500">{blog.minsRead} mins read</p>

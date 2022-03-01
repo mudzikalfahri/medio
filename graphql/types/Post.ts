@@ -19,7 +19,7 @@ export const Post = objectType({
     t.string("body");
     t.string("headline");
     t.string("thumbnail");
-    t.string("category");
+    t.string("categoryId");
     t.int("minsRead");
     t.int("views");
     t.string("authorId");
@@ -34,6 +34,18 @@ export const Post = objectType({
             },
           })
           .author();
+      },
+    });
+    t.field("category", {
+      type: "Category",
+      async resolve(parent, _args, ctx) {
+        return await ctx.prisma.post
+          .findUnique({
+            where: {
+              id: parent.id,
+            },
+          })
+          .category();
       },
     });
   },
@@ -72,7 +84,7 @@ export const PostMutation = extendType({
         body: nonNull(stringArg()),
         headline: nonNull(stringArg()),
         minsRead: nonNull(intArg()),
-        category: nonNull(stringArg()),
+        categoryId: nonNull(stringArg()),
         thumbnail: nonNull(stringArg()),
         authorId: nonNull(stringArg()),
       },
@@ -81,7 +93,7 @@ export const PostMutation = extendType({
         {
           title,
           body,
-          category,
+          categoryId,
           thumbnail,
           authorId,
           headline,
@@ -96,7 +108,7 @@ export const PostMutation = extendType({
               minsRead,
               body,
               headline,
-              category,
+              categoryId,
               thumbnail,
               authorId,
             },

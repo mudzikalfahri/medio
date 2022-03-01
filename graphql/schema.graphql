@@ -14,14 +14,15 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 type Mutation {
-  createPost(authorId: String!, body: String!, category: String!, headline: String!, minsRead: Int!, thumbnail: String!, title: String!): Post!
+  createPost(authorId: String!, body: String!, categoryId: String!, headline: String!, minsRead: Int!, thumbnail: String!, title: String!): Post!
 }
 
 type Post {
   author: User
   authorId: String
   body: String
-  category: String
+  category: Category
+  categoryId: String
   createdAt: String
   headline: String
   id: String
@@ -32,6 +33,7 @@ type Post {
 }
 
 type Query {
+  categories: [Category!]
   post(id: ID): [Post!]
   posts: [Post!]
   user(email: String): [User]!

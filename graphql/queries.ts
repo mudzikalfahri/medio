@@ -6,7 +6,9 @@ const getAllPostQuery = gql`
       id
       title
       body
-      category
+      category {
+        name
+      }
       thumbnail
       createdAt
       minsRead
