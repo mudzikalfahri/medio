@@ -60,11 +60,11 @@ export const PostsQuery = extendType({
         return ctx.prisma.post.findMany();
       },
     });
-    t.list.nonNull.field("post", {
+    t.nonNull.field("post", {
       type: "Post",
       args: { id: idArg() },
       resolve(_parent, { id }: { id: string }, ctx) {
-        return ctx.prisma.post.findMany({
+        return ctx.prisma.post.findUnique({
           where: {
             id: id,
           },

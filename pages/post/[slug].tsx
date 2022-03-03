@@ -1,14 +1,55 @@
 import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
-import { NextPage } from "next";
+import { GetStaticPaths, NextPage } from "next";
 import { text } from "@utils/test";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
+import { gql, useQuery } from "@apollo/client";
+import apolloClient from "@lib/apollo";
+import { Post as IPost } from "@interfaces/index";
+import { timeAgo } from "@utils/dateformat";
 
-const DetailPost: NextPage = () => {
+const GET_DETAIL = gql`
+  query getDetail($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      category {
+        name
+        id
+      }
+      author {
+        name
+        image
+        id
+      }
+      minsRead
+      body
+      createdAt
+      thumbnail
+    }
+  }
+`;
+
+export async function getServerSideProps({ params }) {
+  const { slug } = params;
+  const { data } = await apolloClient.query({
+    query: GET_DETAIL,
+    variables: { id: slug },
+  });
+  return {
+    props: { data: data.post },
+  };
+}
+
+interface IPostDetail {
+  data: IPost;
+}
+
+const DetailPost: NextPage<IPostDetail> = ({ data }) => {
   return (
     <Layout
       meta={
@@ -22,14 +63,12 @@ const DetailPost: NextPage = () => {
         <div className="col-span-5 pt-24 pr-16 pl-4">
           <div className="mx-auto">
             <h2 className="text-purple-700 mb-2 py-1.5 px-4 bg-purple-100 w-max rounded-full">
-              Website
+              {data.category.name}
             </h2>
-            <h1 className="text-5xl font-bold mb-5">
-              How to Build Strong Community
-            </h1>
+            <h1 className="text-5xl font-bold mb-5">{data.title}</h1>
             <div className="flex items-center space-x-2 mb-8 text-gray-500">
               <Image
-                src="/profile.jfif"
+                src={data.author.image}
                 width={30}
                 height={30}
                 objectFit="cover"
@@ -37,16 +76,18 @@ const DetailPost: NextPage = () => {
               />
               <p>
                 Uploaded by{" "}
-                <span className="text-purple-700 underline">Richard Koh</span>{" "}
-                on 2 January 2022
+                <span className="text-purple-700 underline">
+                  {data.author.name}
+                </span>{" "}
+                on {timeAgo(new Date(+data?.createdAt))}
               </p>
               <span className="text-gray-300">•</span>
-              <p className="text-purple-700">4 mins read</p>
+              <p className="text-purple-700">{data.minsRead} mins read</p>
             </div>
           </div>
           <div className="w-full flex justify-center">
             <Image
-              src="/image.jpg"
+              src={data.thumbnail}
               width={900}
               height={400}
               objectFit="cover"
@@ -68,7 +109,7 @@ const DetailPost: NextPage = () => {
               </div>
             </div>
             <div className="prose max-w-2xl prose-img:rounded-lg prose-purple mx-auto">
-              <ReactMarkdown children={text + text} />
+              <ReactMarkdown children={data.body} />
             </div>
           </div>
         </div>
