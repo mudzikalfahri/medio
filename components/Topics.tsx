@@ -1,10 +1,20 @@
 import React from "react";
+import { Category as ICategory } from "@interfaces/index";
 
-function Topics({ categories, loading }) {
+function Topics({
+  categories,
+  loading,
+}: {
+  categories: ICategory[];
+  loading: boolean;
+}) {
   return (
     <div className="topics mt-6">
-      <h1 className="font-semibold">Recomended Topics</h1>
-      <div className="flex flex-wrap items-center mt-4 gap-3">
+      {loading && (
+        <div className="w-36 h-6 rounded-full bg-gray-200 animate-pulse"></div>
+      )}
+      {!loading && <h1 className="font-semibold">Recomended Topics</h1>}
+      <div className="flex flex-wrap items-center mt-4 gap-2">
         {loading && (
           <>
             <div className="w-24 h-8 bg-gray-200 animate-pulse rounded-full"></div>

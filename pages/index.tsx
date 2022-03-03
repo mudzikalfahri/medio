@@ -1,13 +1,14 @@
 import PostCard from "@components/PostCard";
 import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { NextPage } from "next";
 import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
 import { getHomeData } from "@graphql/queries";
+import PostCardSkel from "@components/PostCardSkel";
 
 const Home: NextPage = () => {
   const { data, loading, error } = getHomeData();
@@ -46,11 +47,18 @@ const Home: NextPage = () => {
               data?.posts.map((blog, idx) => (
                 <PostCard key={idx} blog={blog} />
               ))}
+            {loading && (
+              <>
+                <PostCardSkel />
+                <PostCardSkel />
+                <PostCardSkel />
+              </>
+            )}
           </div>
         </div>
         <div className="hidden md:inline md:w-1/3 border-l border-gray-200 pl-10 pt-28">
           <div className="sticky top-0 overflow-y-auto ">
-            {!session && <LoginBox />}
+            {!session && !loading && <LoginBox />}
             <Topics categories={data?.categories} loading={loading} />
             <SavedSidebar />
           </div>
