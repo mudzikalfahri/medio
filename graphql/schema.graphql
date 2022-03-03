@@ -5,7 +5,7 @@
 type Category {
   id: String
   name: String
-  posts: Post
+  posts: [Post]
 }
 
 """

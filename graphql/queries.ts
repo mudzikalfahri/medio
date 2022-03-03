@@ -20,10 +20,17 @@ const getAllPostQuery = gql`
         image
       }
     }
+    categories {
+      id
+      name
+      posts {
+        id
+      }
+    }
   }
 `;
 
-export const getAllPosts = () => {
+export const getHomeData = () => {
   const { data, error, loading } = useQuery(getAllPostQuery);
   return { data, error, loading };
 };

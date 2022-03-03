@@ -7,11 +7,11 @@ import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
-import { getAllPosts } from "@graphql/queries";
+import { getHomeData } from "@graphql/queries";
 
 const Home: NextPage = () => {
-  const { data: dataPost, loading, error } = getAllPosts();
-  const { data } = useSession();
+  const { data, loading, error } = getHomeData();
+  const { data: session } = useSession();
   return (
     <Layout
       meta={
@@ -43,15 +43,15 @@ const Home: NextPage = () => {
           {/* Post */}
           <div className="pt-10">
             {!loading &&
-              dataPost?.posts.map((blog, idx) => (
+              data?.posts.map((blog, idx) => (
                 <PostCard key={idx} blog={blog} />
               ))}
           </div>
         </div>
         <div className="hidden md:inline md:w-1/3 border-l border-gray-200 pl-10 pt-28">
           <div className="sticky top-0 overflow-y-auto ">
-            {!data && <LoginBox />}
-            <Topics />
+            {!session && <LoginBox />}
+            <Topics categories={data?.categories} loading={loading} />
             <SavedSidebar />
           </div>
         </div>

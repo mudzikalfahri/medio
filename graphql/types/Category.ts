@@ -5,7 +5,7 @@ export const Category = objectType({
   definition(t) {
     t.string("id");
     t.string("name");
-    t.field("posts", {
+    t.list.field("posts", {
       type: "Post",
       async resolve(parent, _args, ctx) {
         return await ctx.prisma.category
