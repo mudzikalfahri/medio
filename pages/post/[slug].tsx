@@ -1,13 +1,12 @@
 import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
-import { GetStaticPaths, NextPage } from "next";
-import { text } from "@utils/test";
+import { NextPage } from "next";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import apolloClient from "@lib/apollo";
 import { Post as IPost } from "@interfaces/index";
 import { timeAgo } from "@utils/dateformat";
