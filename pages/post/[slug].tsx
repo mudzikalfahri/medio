@@ -107,7 +107,7 @@ const DetailPost: NextPage<IPostDetail> = ({ data }) => {
                 </SocialIcon>
               </div>
             </div>
-            <div className="prose max-w-2xl prose-img:rounded-lg prose-purple mx-auto">
+            <div className="prose max-w-2xl prose-img:rounded-lg prose-purple mx-auto pb-20">
               <ReactMarkdown children={data.body} />
             </div>
           </div>

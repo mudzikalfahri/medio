@@ -56,8 +56,8 @@ const Home: NextPage = () => {
             )}
           </div>
         </div>
-        <div className="hidden md:inline md:w-1/3 border-l border-gray-200 pl-10 pt-28">
-          <div className="sticky top-0 overflow-y-auto ">
+        <div className="hidden md:inline md:w-1/3 border-l border-gray-200 pl-10 pt-28 pb-20">
+          <div className="sticky top-1 overflow-y-auto ">
             {!session && !loading && <LoginBox />}
             <Topics categories={data?.categories} loading={loading} />
             <SavedSidebar />
