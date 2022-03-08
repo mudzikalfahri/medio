@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const getAllPostQuery = gql`
+const GET_HOME_DATA = gql`
   query {
     posts {
       id
@@ -30,7 +30,37 @@ const getAllPostQuery = gql`
   }
 `;
 
+export const GET_PATHS = gql`
+  query {
+    posts {
+      id
+    }
+  }
+`;
+
+export const GET_DETAIL = gql`
+  query getDetail($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      category {
+        name
+        id
+      }
+      author {
+        name
+        image
+        id
+      }
+      minsRead
+      body
+      createdAt
+      thumbnail
+    }
+  }
+`;
+
 export const getHomeData = () => {
-  const { data, error, loading } = useQuery(getAllPostQuery);
+  const { data, error, loading } = useQuery(GET_HOME_DATA);
   return { data, error, loading };
 };

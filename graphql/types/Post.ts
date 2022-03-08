@@ -54,13 +54,13 @@ export const Post = objectType({
 export const PostsQuery = extendType({
   type: "Query",
   definition(t) {
-    t.list.nonNull.field("posts", {
+    t.list.field("posts", {
       type: "Post",
       resolve(_parent, _args, ctx) {
         return ctx.prisma.post.findMany();
       },
     });
-    t.nonNull.field("post", {
+    t.field("post", {
       type: "Post",
       args: { id: idArg() },
       resolve(_parent, { id }: { id: string }, ctx) {

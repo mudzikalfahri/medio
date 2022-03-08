@@ -9,38 +9,37 @@ import MiniPostCard from "@components/MiniPostCard";
 import { gql } from "@apollo/client";
 import apolloClient from "@lib/apollo";
 import { Post as IPost } from "@interfaces/index";
+import { GET_PATHS, GET_DETAIL } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
 
-const GET_DETAIL = gql`
-  query getDetail($id: ID!) {
-    post(id: $id) {
-      id
-      title
-      category {
-        name
-        id
-      }
-      author {
-        name
-        image
-        id
-      }
-      minsRead
-      body
-      createdAt
-      thumbnail
-    }
-  }
-`;
+export const getStaticPaths = async () => {
+  const { data } = await apolloClient.query({
+    query: GET_PATHS,
+  });
+  const paths = data.posts.map((post) => ({ params: { slug: post.id } }));
 
-export async function getServerSideProps({ params }) {
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export async function getStaticProps({ params }) {
   const { slug } = params;
   const { data } = await apolloClient.query({
     query: GET_DETAIL,
     variables: { id: slug },
   });
+
+  if (!data.post) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: { data: data.post },
+    revalidate: 5,
   };
 }
 
