@@ -1,12 +1,26 @@
+import { useMutation } from "@apollo/client";
 import { Post } from "@interfaces/index";
 import { timeAgo } from "@utils/dateformat";
+import { gql } from "apollo-server-micro";
 import Link from "next/link";
 
+const ADD_VIEWS = gql`
+  mutation Mutation($id: String!) {
+    addView(id: $id) {
+      views
+    }
+  }
+`;
+
 const PostCard = ({ blog }: { blog: Post }) => {
+  const [addView] = useMutation(ADD_VIEWS);
   const date = new Date(+blog?.createdAt);
+  const viewDetail = () => {
+    addView({ variables: { id: blog.id } });
+  };
   return (
     <Link href={"/post/" + blog.id}>
-      <div className="flex space-x-4 mb-10 cursor-pointer">
+      <div onClick={viewDetail} className="flex space-x-4 mb-10 cursor-pointer">
         <div className="w-1/3 overflow-hidden">
           <img
             src={blog.thumbnail}
@@ -21,6 +35,8 @@ const PostCard = ({ blog }: { blog: Post }) => {
             </div>
             <span className="text-gray-200">•</span>
             <p className="text-xs text-gray-500">{blog.minsRead} mins read</p>
+            <span className="text-gray-200">•</span>
+            <p className="text-xs text-gray-500">{blog.views} Views</p>
           </div>
           <h1 className="text-2xl font-bold mt-1">{blog.title}</h1>
           <p className="text-sm mt-2 text-gray-500 line-clamp-4">

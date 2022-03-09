@@ -11,6 +11,7 @@ import apolloClient from "@lib/apollo";
 import { Post as IPost } from "@interfaces/index";
 import { GET_PATHS, GET_DETAIL } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
+import SkeletonDetailPost from "@components/SkeletonDetailPost";
 
 export const getStaticPaths = async () => {
   const { data } = await apolloClient.query({
@@ -48,6 +49,7 @@ interface IPostDetail {
 }
 
 const DetailPost: NextPage<IPostDetail> = ({ data }) => {
+  if (!data) return <SkeletonDetailPost />;
   return (
     <Layout
       meta={

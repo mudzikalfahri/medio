@@ -56,15 +56,15 @@ export const PostsQuery = extendType({
   definition(t) {
     t.list.field("posts", {
       type: "Post",
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.post.findMany();
+      async resolve(_parent, _args, ctx) {
+        return await ctx.prisma.post.findMany();
       },
     });
     t.field("post", {
       type: "Post",
       args: { id: idArg() },
-      resolve(_parent, { id }: { id: string }, ctx) {
-        return ctx.prisma.post.findUnique({
+      async resolve(_parent, { id }: { id: string }, ctx) {
+        return await ctx.prisma.post.findUnique({
           where: {
             id: id,
           },
@@ -77,6 +77,24 @@ export const PostsQuery = extendType({
 export const PostMutation = extendType({
   type: "Mutation",
   definition(t) {
+    t.field("addView", {
+      type: "Post",
+      args: {
+        id: nonNull(stringArg()),
+      },
+      async resolve(root, { id }, ctx) {
+        return await ctx.prisma.post.update({
+          data: {
+            views: {
+              increment: 1,
+            },
+          },
+          where: {
+            id: id,
+          },
+        });
+      },
+    });
     t.nonNull.field("createPost", {
       type: "Post",
       args: {
@@ -88,7 +106,7 @@ export const PostMutation = extendType({
         thumbnail: nonNull(stringArg()),
         authorId: nonNull(stringArg()),
       },
-      resolve(
+      async resolve(
         _root,
         {
           title,
@@ -102,7 +120,7 @@ export const PostMutation = extendType({
         ctx
       ) {
         if (ctx.session) {
-          return ctx.prisma.post.create({
+          return await ctx.prisma.post.create({
             data: {
               title,
               minsRead,

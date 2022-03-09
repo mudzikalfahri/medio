@@ -12,6 +12,7 @@ const GET_HOME_DATA = gql`
       thumbnail
       createdAt
       minsRead
+      views
       headline
       author {
         id

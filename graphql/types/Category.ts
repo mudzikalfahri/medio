@@ -25,8 +25,8 @@ export const categoriesQuery = extendType({
   definition(t) {
     t.list.nonNull.field("categories", {
       type: "Category",
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.category.findMany();
+      async resolve(_parent, _args, ctx) {
+        return await ctx.prisma.category.findMany();
       },
     });
   },

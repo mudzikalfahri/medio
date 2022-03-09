@@ -5,6 +5,8 @@ export type Post = {
   thumbnail: string;
   category: Category;
   authorId: string;
+  categoryId: string;
+  views: number;
   createdAt?: string;
   minsRead: number;
   headline: string;

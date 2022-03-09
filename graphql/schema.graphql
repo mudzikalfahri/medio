@@ -14,6 +14,7 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 type Mutation {
+  addView(id: String!): Post
   createPost(authorId: String!, body: String!, categoryId: String!, headline: String!, minsRead: Int!, thumbnail: String!, title: String!): Post!
 }
 

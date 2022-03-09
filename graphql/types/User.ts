@@ -27,15 +27,15 @@ export const usersQuery = extendType({
   definition(t) {
     t.nonNull.list.field("users", {
       type: "User",
-      resolve(_parent, _args, ctx) {
-        return ctx.prisma.user.findMany();
+      async resolve(_parent, _args, ctx) {
+        return await ctx.prisma.user.findMany();
       },
     });
     t.nonNull.list.field("user", {
       type: "User",
       args: { email: stringArg() },
-      resolve(_parent, { email }: { email: string }, ctx) {
-        return ctx.prisma.user.findMany({ where: { email: email } });
+      async resolve(_parent, { email }: { email: string }, ctx) {
+        return await ctx.prisma.user.findMany({ where: { email: email } });
       },
     });
   },
