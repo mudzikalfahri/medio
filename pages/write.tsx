@@ -6,12 +6,27 @@ import Button from "@components/Button";
 import PreviewPost from "@components/PreviewPost";
 import PublishModal from "@components/PublishModal";
 import { useUser } from "@hooks/useUser";
+import { getSession } from "next-auth/react";
+
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+  if (!session)
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  return {
+    props: {},
+  };
+};
 
 const Write: NextPage = () => {
   const [body, setBody] = useState<string>("");
   const [preview, setPreview] = useState<Boolean>(false);
   const [publish, setPublish] = useState<Boolean>(false);
-  const { data, loading, authenticated } = useUser();
+  const { data } = useUser();
 
   useEffect(() => {
     preview || publish

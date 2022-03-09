@@ -50,7 +50,6 @@ function PublishModal({
   const { data, loading, error: errorCategory } = useQuery(GET_CATEGORY);
   const [addPost, { data: dataMutate, loading: loadMutate, error }] =
     useMutation(ADD_POST);
-  console.log(data);
 
   const onSubmit = (data) => {
     const { title, categoryId, headline, minsRead } = data;
@@ -68,24 +67,7 @@ function PublishModal({
 
   return (
     <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 flex items-center justify-center">
-      {loading && (
-        <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
-          <div className="w-12 h-12 rounded-full animate-pulse bg-gray-200"></div>
-          <div className="h-6 w-1/2 animate-pulse bg-gray-200 rounded-lg mt-4"></div>
-          <div className="h-6 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
-          <div className="h-6 w-1/3 animate-pulse bg-gray-200 rounded-lg mt-2"></div>
-          <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-8"></div>
-          <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
-          <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
-          <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
-          <div className="h-4 w-full animate-pulse bg-gray-200 rounded-lg mt-8"></div>
-          <div className="h-4 w-1/4 self-start animate-pulse bg-gray-200 rounded-lg mt-2"></div>
-          <div className="flex justify-end items-center w-full space-x-3 mt-8">
-            <div className="h-9 w-1/5 animate-pulse bg-gray-200 rounded-full"></div>
-            <div className="h-9 w-1/4 animate-pulse bg-gray-200 rounded-full"></div>
-          </div>
-        </div>
-      )}
+      {loading && <SkeletonPublish />}
       {!loading && (
         <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
           <div className="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 text-purple-700">
@@ -173,6 +155,27 @@ function PublishModal({
           </form>
         </div>
       )}
+    </div>
+  );
+}
+
+function SkeletonPublish() {
+  return (
+    <div className="w-2/5 py-4 px-8 flex flex-col items-center bg-white rounded-lg">
+      <div className="w-12 h-12 rounded-full animate-pulse bg-gray-200"></div>
+      <div className="h-6 w-1/2 animate-pulse bg-gray-200 rounded-lg mt-4"></div>
+      <div className="h-6 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
+      <div className="h-6 w-1/3 animate-pulse bg-gray-200 rounded-lg mt-2"></div>
+      <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-8"></div>
+      <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
+      <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
+      <div className="h-9 w-full animate-pulse bg-gray-200 rounded-lg mt-4"></div>
+      <div className="h-4 w-full animate-pulse bg-gray-200 rounded-lg mt-8"></div>
+      <div className="h-4 w-1/4 self-start animate-pulse bg-gray-200 rounded-lg mt-2"></div>
+      <div className="flex justify-end items-center w-full space-x-3 mt-8">
+        <div className="h-9 w-1/5 animate-pulse bg-gray-200 rounded-full"></div>
+        <div className="h-9 w-1/4 animate-pulse bg-gray-200 rounded-full"></div>
+      </div>
     </div>
   );
 }

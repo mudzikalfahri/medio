@@ -13,18 +13,6 @@ export default NextAuth({
       clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
     }),
-    GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET,
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
-    // ...add more providers here
   ],
   adapter: PrismaAdapter(prisma),
   debug: process.env.NODE_ENV === "development",

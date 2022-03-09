@@ -11,7 +11,7 @@ function LoginBox() {
         Login now then you can post and comment as you like
       </h1>
       <div
-        onClick={() => signIn("google")}
+        onClick={() => signIn("github")}
         className="flex items-center cursor-pointer duration-150 hover:bg-gray-800 hover:text-white space-x-2 py-2 rounded-full bg-white px-8 justify-center border border-gray-500 mt-4"
       >
         <FcGoogle className="text-xl" />
