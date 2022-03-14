@@ -31,6 +31,31 @@ const GET_HOME_DATA = gql`
   }
 `;
 
+export const ADD_POST = gql`
+  mutation addPost(
+    $title: String!
+    $body: String!
+    $headline: String!
+    $minsRead: Int!
+    $categoryId: String!
+    $thumbnail: String!
+    $authorId: String!
+  ) {
+    createPost(
+      title: $title
+      body: $body
+      headline: $headline
+      minsRead: $minsRead
+      categoryId: $categoryId
+      thumbnail: $thumbnail
+      authorId: $authorId
+    ) {
+      body
+      createdAt
+    }
+  }
+`;
+
 export const GET_PATHS = gql`
   query {
     posts {

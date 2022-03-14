@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Button from "./Button";
+import Link from "next/link";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -11,23 +12,25 @@ const Header = () => {
   return (
     <header className="fixed text-gray-800 top-0 left-0 py-3 w-full shadow-md shadow-gray-400/10 z-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-        <div className="logo flex items-center space-x-1">
-          <svg
-            className="w-7 h-7 text-purple-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-            />
-          </svg>
-          <h1 className="font-bold text-3xl font-serif">Medio</h1>
-        </div>
+        <Link href="/">
+          <div className="logo flex items-center space-x-1 cursor-pointer">
+            <svg
+              className="w-7 h-7 text-purple-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              />
+            </svg>
+            <h1 className="font-bold text-3xl font-serif">Medio</h1>
+          </div>
+        </Link>
         <div className="right-side flex items-center">
           <HeaderIcon
             icon={
