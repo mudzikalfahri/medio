@@ -9,7 +9,8 @@ import {
 } from "nexus";
 import { GraphQLDateTime } from "graphql-iso-date";
 import { Post as IPost } from "@interfaces/index";
-export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
+
+asNexusMethod(GraphQLDateTime, "date");
 
 export const Post = objectType({
   name: "Post",
