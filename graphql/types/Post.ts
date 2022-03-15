@@ -6,11 +6,11 @@ import {
   nonNull,
   asNexusMethod,
   intArg,
+  makeSchema,
 } from "nexus";
 import { GraphQLDateTime } from "graphql-iso-date";
 import { Post as IPost } from "@interfaces/index";
-
-asNexusMethod(GraphQLDateTime, "date");
+export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
 
 export const Post = objectType({
   name: "Post",
@@ -50,6 +50,10 @@ export const Post = objectType({
       },
     });
   },
+});
+
+export const schema = makeSchema({
+  types: [GQLDate], // Add Scalar to Array
 });
 
 export const PostsQuery = extendType({
