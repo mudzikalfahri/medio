@@ -52,10 +52,6 @@ export const Post = objectType({
   },
 });
 
-export const schema = makeSchema({
-  types: [GQLDate], // Add Scalar to Array
-});
-
 export const PostsQuery = extendType({
   type: "Query",
   definition(t) {
