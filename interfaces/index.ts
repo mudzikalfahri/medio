@@ -7,7 +7,7 @@ export type Post = {
   authorId: string;
   categoryId: string;
   views: number;
-  createdAt?: string;
+  createdAt?: Date;
   minsRead: number;
   headline: string;
   author: User;

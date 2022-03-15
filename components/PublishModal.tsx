@@ -4,6 +4,7 @@ import { useMutation, gql, useQuery } from "@apollo/client";
 import { ADD_POST } from "@graphql/queries";
 import { BsCheck2Circle } from "react-icons/bs";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const GET_CATEGORY = gql`
   query Categories {
@@ -28,7 +29,7 @@ function PublishModal({
   const [addPost, { data: dataMutate, loading: loadMutate, error }] =
     useMutation(ADD_POST);
 
-  console.log(dataMutate);
+  const router = useRouter();
 
   const onSubmit = (data) => {
     const { title, categoryId, headline, minsRead } = data;
@@ -62,18 +63,21 @@ function PublishModal({
               <div className="font-medium">Publishing Content</div>
             </div>
           )}
-          {!dataMutate && (
+          {dataMutate && (
             <div className="flex flex-col items-center py-6">
               <div className="w-12 mb-3 h-12 flex justify-center items-center bg-purple-100 rounded-full">
                 <BsCheck2Circle className="text-2xl text-purple-600" />
               </div>
               <div className="font-medium mb-4">Published Succesfully</div>
-              <Link href="/">
-                <Button text="Go to Post" click={close} dark={false} />
-              </Link>
+
+              <Button
+                text="Go to Post"
+                click={() => router.replace("/")}
+                dark={true}
+              />
             </div>
           )}
-          {!loadMutate && dataMutate && (
+          {!loadMutate && !dataMutate && (
             <>
               <div className="w-12 h-12 rounded-full flex items-center justify-center bg-purple-100 text-purple-700">
                 <svg

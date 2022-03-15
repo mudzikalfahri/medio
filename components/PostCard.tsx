@@ -14,13 +14,12 @@ const ADD_VIEWS = gql`
 
 const PostCard = ({ blog }: { blog: Post }) => {
   const [addView] = useMutation(ADD_VIEWS);
-  const date = new Date(+blog?.createdAt);
   const viewDetail = () => {
     addView({ variables: { id: blog.id } });
   };
   return (
     <Link href={"/post/" + blog.id}>
-      <div onClick={viewDetail} className="flex space-x-4 mb-10 cursor-pointer">
+      <div onClick={viewDetail} className="flex space-x-4 mb-8 cursor-pointer">
         <div className="w-1/3 overflow-hidden">
           <img
             src={blog.thumbnail}
@@ -51,7 +50,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
               <div>
                 <p className="text-sm">{blog.author.name}</p>
                 <p className="text-xs text-purple-500">
-                  Published {timeAgo(date)}
+                  Published {timeAgo(blog.createdAt)}
                 </p>
               </div>
             </div>

@@ -7,12 +7,46 @@ import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
-import { getHomeData } from "@graphql/queries";
+import { GET_HOME_DATA } from "@graphql/queries";
 import PostCardSkel from "@components/PostCardSkel";
+import { GiTerror } from "react-icons/gi";
+import { AiOutlineReload } from "react-icons/ai";
+import { useRouter } from "next/router";
+import apolloClient from "@lib/apollo";
+import { Post, Category } from "@interfaces/index";
 
-const Home: NextPage = () => {
-  const { data, loading, error } = getHomeData();
-  const { data: session } = useSession();
+export const getStaticProps = async () => {
+  const { data } = await apolloClient.query({
+    query: GET_HOME_DATA,
+  });
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { data },
+    revalidate: 5,
+  };
+};
+
+interface Data {
+  posts: Post[];
+  categories: Category[];
+}
+
+interface IHome {
+  data: Data;
+}
+
+const Home: NextPage<IHome> = ({ data }) => {
+  let loading,
+    error = false;
+  // const { data, loading, error } = getHomeData();
+  const { data: session, status } = useSession();
+  const router = useRouter();
   return (
     <Layout
       meta={
@@ -42,7 +76,22 @@ const Home: NextPage = () => {
             <div className="py-2 px-5 w-max">Today</div>
           </div>
           {/* Post */}
-          <div className="pt-10">
+          <div className="pt-8">
+            {error && (
+              <div className="flex flex-col text-gray-500 items-center pt-10 space-y-1.5">
+                <GiTerror className="text-4xl" />
+                <h3 className="text-md ">
+                  Unable to Query Data from The Server
+                </h3>
+                <div
+                  onClick={() => router.reload()}
+                  className="text-sm cursor-pointer py-1 px-2 bg-gray-100 rounded-md underline flex items-center space-x-1"
+                >
+                  <AiOutlineReload className="text-xs" />
+                  <p>reload</p>
+                </div>
+              </div>
+            )}
             {!loading &&
               data?.posts.map((blog, idx) => (
                 <PostCard key={idx} blog={blog} />

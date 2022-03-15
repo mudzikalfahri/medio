@@ -7,9 +7,9 @@ import {
   asNexusMethod,
   intArg,
 } from "nexus";
-import { GraphQLDate } from "graphql-iso-date";
+import { GraphQLDateTime } from "graphql-iso-date";
 import { Post as IPost } from "@interfaces/index";
-export const GQLDate = asNexusMethod(GraphQLDate, "date");
+export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
 
 export const Post = objectType({
   name: "Post",
@@ -23,7 +23,7 @@ export const Post = objectType({
     t.int("minsRead");
     t.int("views");
     t.string("authorId");
-    t.string("createdAt");
+    t.date("createdAt");
     t.field("author", {
       type: "User",
       async resolve(parent, _args, ctx) {
@@ -56,8 +56,8 @@ export const PostsQuery = extendType({
   definition(t) {
     t.list.field("posts", {
       type: "Post",
-      async resolve(_parent, _args, ctx) {
-        return await ctx.prisma.post.findMany({
+      resolve(_parent, _args, ctx) {
+        return ctx.prisma.post.findMany({
           orderBy: {
             createdAt: "desc",
           },
@@ -67,8 +67,8 @@ export const PostsQuery = extendType({
     t.field("post", {
       type: "Post",
       args: { id: idArg() },
-      async resolve(_parent, { id }: { id: string }, ctx) {
-        return await ctx.prisma.post.findUnique({
+      resolve(_parent, { id }: { id: string }, ctx) {
+        return ctx.prisma.post.findUnique({
           where: {
             id: id,
           },
@@ -86,8 +86,8 @@ export const PostMutation = extendType({
       args: {
         id: nonNull(stringArg()),
       },
-      async resolve(root, { id }, ctx) {
-        return await ctx.prisma.post.update({
+      resolve(root, { id }, ctx) {
+        return ctx.prisma.post.update({
           data: {
             views: {
               increment: 1,
@@ -110,7 +110,7 @@ export const PostMutation = extendType({
         thumbnail: nonNull(stringArg()),
         authorId: nonNull(stringArg()),
       },
-      async resolve(
+      resolve(
         _root,
         {
           title,
@@ -124,7 +124,7 @@ export const PostMutation = extendType({
         ctx
       ) {
         if (ctx.session) {
-          return await ctx.prisma.post.create({
+          return ctx.prisma.post.create({
             data: {
               title,
               minsRead,

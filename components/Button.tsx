@@ -10,6 +10,7 @@ function Button({
   text: string;
   click?: () => void;
   disabled?: boolean;
+  href?: () => void;
 }) {
   return (
     <button
