@@ -16,7 +16,7 @@
     },
     "sourceMap": true,
     "outDir": "dist",
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
