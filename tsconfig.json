@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
-        "paths": {
-            "@components/*": ["components/*"],
-            "@styles/*": ["styles/*"],
-            "@pages/*": ["pages/*"],
-            "@utils/*": ["utils/*"],
-            "@graphql/*": ["graphql/*"],
-            "@prisma/*": ["prisma/*"],
-            "@lib/*": ["lib/*"],
-            "@interfaces/*": ["interfaces/*"],
-            "@hooks/*": ["hooks/*"]
-        },
+    "paths": {
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@pages/*": ["pages/*"],
+      "@utils/*": ["utils/*"],
+      "@graphql/*": ["graphql/*"],
+      "@prisma/*": ["prisma/*"],
+      "@lib/*": ["lib/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@hooks/*": ["hooks/*"]
+    },
+    "sourceMap": true,
+    "outDir": "dist",
+    "noUnusedLocals": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -31,12 +30,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "api"]
 }
