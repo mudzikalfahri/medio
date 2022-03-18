@@ -1,10 +1,9 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
 function LoginBox() {
-  const { data, status } = useSession();
   return (
     <div className="border-b border-gray-200 flex pb-8 flex-col items-center">
       <h1 className="w-2/3 text-gray-800 text-center font-medium">

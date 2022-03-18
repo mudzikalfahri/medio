@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useMutation, gql, useQuery } from "@apollo/client";
 import { ADD_POST } from "@graphql/queries";
 import { BsCheck2Circle } from "react-icons/bs";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const GET_CATEGORY = gql`

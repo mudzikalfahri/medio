@@ -6,7 +6,6 @@ import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
-import { gql } from "@apollo/client";
 import apolloClient from "@lib/apollo";
 import { Post as IPost } from "@interfaces/index";
 import { GET_PATHS, GET_DETAIL } from "@graphql/queries";

@@ -6,7 +6,6 @@ import {
   nonNull,
   asNexusMethod,
   intArg,
-  makeSchema,
 } from "nexus";
 import { GraphQLDateTime } from "graphql-iso-date";
 import { Post as IPost } from "@interfaces/index";

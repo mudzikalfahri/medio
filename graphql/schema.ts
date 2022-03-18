@@ -19,4 +19,4 @@ export const schema = makeSchema({
     export: "Context",
     module: join(process.cwd(), "graphql", "context.ts"),
   },
-});
+}) as unknown as GraphQLSchema;

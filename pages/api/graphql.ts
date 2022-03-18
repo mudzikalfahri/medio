@@ -6,7 +6,7 @@ import { schema } from "@graphql/schema";
 const cors = Cors();
 
 const apolloServer = new ApolloServer({
-  schema: schema,
+  schema,
   context: createContext,
 });
 
