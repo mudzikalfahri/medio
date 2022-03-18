@@ -13,7 +13,7 @@ export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
 
 export const Post = objectType({
   name: "Post",
-  definition(t) {
+  definition(t: any) {
     t.string("id");
     t.string("title");
     t.string("body");
