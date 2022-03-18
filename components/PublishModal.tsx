@@ -47,7 +47,7 @@ function PublishModal({
   return (
     <div className="top-0 left-0 w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 flex items-center justify-center">
       {loading && (
-        <div className="w-10 h-10">
+        <div className="w-full flex justify-center">
           <SkeletonPublish />
         </div>
       )}

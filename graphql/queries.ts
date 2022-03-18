@@ -90,3 +90,9 @@ export const getHomeData = () => {
   const { data, error, loading, refetch, fetchMore } = useQuery(GET_HOME_DATA);
   return { data, error, loading, refetch, fetchMore };
 };
+export const getDetailData = (slug) => {
+  const { data, error, loading, refetch, fetchMore } = useQuery(GET_DETAIL, {
+    variables: { id: slug },
+  });
+  return { data, error, loading, refetch, fetchMore };
+};

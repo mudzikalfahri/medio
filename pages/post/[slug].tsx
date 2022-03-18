@@ -8,9 +8,10 @@ import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
 import apolloClient from "@lib/apollo";
 import { Post as IPost } from "@interfaces/index";
-import { GET_PATHS, GET_DETAIL } from "@graphql/queries";
+import { GET_PATHS, GET_DETAIL, getDetailData } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
 import SkeletonDetailPost from "@components/SkeletonDetailPost";
+import { useRouter } from "next/router";
 
 // export const getStaticPaths = async () => {
 //   const { data } = await apolloClient.query({
@@ -24,31 +25,34 @@ import SkeletonDetailPost from "@components/SkeletonDetailPost";
 //   };
 // };
 
-export async function getServerSideProps({ params }) {
-  const { slug } = params;
-  const { data } = await apolloClient.query({
-    query: GET_DETAIL,
-    variables: { id: slug },
-  });
+// export async function getServerSideProps({ params }) {
+//   const { slug } = params;
+//   const { data } = await apolloClient.query({
+//     query: GET_DETAIL,
+//     variables: { id: slug },
+//   });
 
-  if (!data.post) {
-    return {
-      notFound: true,
-    };
-  }
+//   if (!data.post) {
+//     return {
+//       notFound: true,
+//     };
+//   }
 
-  return {
-    props: { data: data.post },
-    // revalidate: 5,
-  };
-}
+//   return {
+//     props: { data: data.post },
+//     // revalidate: 5,
+//   };
+// }
 
-interface IPostDetail {
-  data?: IPost;
-}
+// interface IPostDetail {
+//   data?: IPost;
+// }
 
-const DetailPost: NextPage<IPostDetail> = ({ data }) => {
-  if (!data) return <SkeletonDetailPost />;
+const DetailPost: NextPage = () => {
+  const router = useRouter();
+  const { data, loading, error } = getDetailData(router.query.slug);
+  if (loading) return <SkeletonDetailPost />;
+  if (error) return <div className="">Error</div>;
   return (
     <Layout
       meta={
@@ -62,12 +66,12 @@ const DetailPost: NextPage<IPostDetail> = ({ data }) => {
         <div className="col-span-5 pt-24 pr-16 pl-4">
           <div className="mx-auto">
             <h2 className="text-purple-700 mb-2 py-1.5 px-4 bg-purple-100 w-max rounded-full">
-              {data.category.name}
+              {data.post.category.name}
             </h2>
-            <h1 className="text-5xl font-bold mb-5">{data.title}</h1>
+            <h1 className="text-5xl font-bold mb-5">{data.post.title}</h1>
             <div className="flex items-center space-x-2 mb-8 text-gray-500">
               <Image
-                src={data.author.image}
+                src={data.post.author.image}
                 width={30}
                 height={30}
                 objectFit="cover"
@@ -76,17 +80,17 @@ const DetailPost: NextPage<IPostDetail> = ({ data }) => {
               <p>
                 Uploaded by{" "}
                 <span className="text-purple-700 underline">
-                  {data.author.name}
+                  {data.post.author.name}
                 </span>{" "}
-                on {timeAgo(new Date(+data?.createdAt))}
+                on {timeAgo(data.post?.createdAt)}
               </p>
               <span className="text-gray-300">•</span>
-              <p className="text-purple-700">{data.minsRead} mins read</p>
+              <p className="text-purple-700">{data.post.minsRead} mins read</p>
             </div>
           </div>
           <div className="w-full flex justify-center">
             <Image
-              src={data.thumbnail}
+              src={data.post.thumbnail}
               width={900}
               height={400}
               objectFit="cover"
@@ -108,7 +112,7 @@ const DetailPost: NextPage<IPostDetail> = ({ data }) => {
               </div>
             </div>
             <div className="prose max-w-2xl prose-img:rounded-lg prose-purple mx-auto pb-20">
-              <ReactMarkdown children={data.body} />
+              <ReactMarkdown children={data.post.body} />
             </div>
           </div>
         </div>
@@ -116,7 +120,6 @@ const DetailPost: NextPage<IPostDetail> = ({ data }) => {
           <div className="mb-4 sticky top-24">
             <h1 className="font-semibold">Related Posts</h1>
             <div className="py-6 flex flex-col space-y-6">
-              {/* SavedCard */}
               <MiniPostCard />
               <MiniPostCard />
             </div>
