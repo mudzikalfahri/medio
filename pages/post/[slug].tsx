@@ -12,19 +12,19 @@ import { GET_PATHS, GET_DETAIL } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
 import SkeletonDetailPost from "@components/SkeletonDetailPost";
 
-export const getStaticPaths = async () => {
-  const { data } = await apolloClient.query({
-    query: GET_PATHS,
-  });
-  const paths = data.posts.map((post) => ({ params: { slug: post.id } }));
+// export const getStaticPaths = async () => {
+//   const { data } = await apolloClient.query({
+//     query: GET_PATHS,
+//   });
+//   const paths = data.posts.map((post) => ({ params: { slug: post.id } }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-};
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { slug } = params;
   const { data } = await apolloClient.query({
     query: GET_DETAIL,
@@ -39,12 +39,12 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { data: data.post },
-    revalidate: 5,
+    // revalidate: 5,
   };
 }
 
 interface IPostDetail {
-  data: IPost;
+  data?: IPost;
 }
 
 const DetailPost: NextPage<IPostDetail> = ({ data }) => {

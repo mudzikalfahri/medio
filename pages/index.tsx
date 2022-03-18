@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import apolloClient from "@lib/apollo";
 import { Post, Category } from "@interfaces/index";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const { data } = await apolloClient.query({
     query: GET_HOME_DATA,
   });
@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
 
   return {
     props: { data },
-    revalidate: 5,
+    // revalidate: 5,
   };
 };
 
