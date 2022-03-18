@@ -8,8 +8,10 @@ import {
   intArg,
 } from "nexus";
 import { GraphQLDateTime } from "graphql-iso-date";
+import { DateTimeResolver } from "graphql-scalars";
 import { Post as IPost } from "@interfaces/index";
-export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
+// export const GQLDate = asNexusMethod(GraphQLDateTime, "date");
+export const DateTimeScalar = asNexusMethod(DateTimeResolver, "date");
 
 export const Post = objectType({
   name: "Post",
