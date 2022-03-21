@@ -7,40 +7,12 @@ import LoginBox from "@components/LoginBox";
 import Topics from "@components/Topics";
 import SavedSidebar from "@components/SavedSidebar";
 import Link from "next/link";
-import { getHomeData, GET_HOME_DATA } from "@graphql/queries";
+import { getHomeData } from "@graphql/queries";
 import PostCardSkel from "@components/PostCardSkel";
 import { GiTerror } from "react-icons/gi";
 import { AiOutlineReload } from "react-icons/ai";
 import { useRouter } from "next/router";
-import apolloClient from "@lib/apollo";
-import { Post, Category } from "@interfaces/index";
-import { useEffect, useState } from "react";
-
-// export const getServerSideProps = async () => {
-//   const { data } = await apolloClient.query({
-//     query: GET_HOME_DATA,
-//   });
-
-//   if (!data) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { data },
-//     // revalidate: 5,
-//   };
-// };
-
-// interface Data {
-//   posts: Post[];
-//   categories: Category[];
-// }
-
-// interface IHome {
-//   data: Data;
-// }
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const { data, loading, error } = getHomeData();

@@ -6,47 +6,11 @@ import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
-import apolloClient from "@lib/apollo";
-import { Post as IPost } from "@interfaces/index";
-import { GET_PATHS, GET_DETAIL, getDetailData } from "@graphql/queries";
+import { getDetailData } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
 import SkeletonDetailPost from "@components/SkeletonDetailPost";
 import { useRouter } from "next/router";
-
-// export const getStaticPaths = async () => {
-//   const { data } = await apolloClient.query({
-//     query: GET_PATHS,
-//   });
-//   const paths = data.posts.map((post) => ({ params: { slug: post.id } }));
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// };
-
-// export async function getServerSideProps({ params }) {
-//   const { slug } = params;
-//   const { data } = await apolloClient.query({
-//     query: GET_DETAIL,
-//     variables: { id: slug },
-//   });
-
-//   if (!data.post) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { data: data.post },
-//     // revalidate: 5,
-//   };
-// }
-
-// interface IPostDetail {
-//   data?: IPost;
-// }
+import Head from "next/head";
 
 const DetailPost: NextPage = () => {
   const router = useRouter();
@@ -58,7 +22,7 @@ const DetailPost: NextPage = () => {
       meta={
         <Meta
           description="Place to share your ideas with others"
-          title="How Website Works"
+          title={"Medio - " + data.post.title}
         />
       }
     >
@@ -70,12 +34,9 @@ const DetailPost: NextPage = () => {
             </h2>
             <h1 className="text-5xl font-bold mb-5">{data.post.title}</h1>
             <div className="flex items-center space-x-2 mb-8 text-gray-500">
-              <Image
+              <img
                 src={data.post.author.image}
-                width={30}
-                height={30}
-                objectFit="cover"
-                className="rounded-full"
+                className="rounded-full h-8 w-8"
               />
               <p>
                 Uploaded by{" "}
@@ -89,12 +50,9 @@ const DetailPost: NextPage = () => {
             </div>
           </div>
           <div className="w-full flex justify-center">
-            <Image
+            <img
               src={data.post.thumbnail}
-              width={900}
-              height={400}
-              objectFit="cover"
-              className="rounded-lg"
+              className="rounded-lg w-full h-80 object-cover"
             />
           </div>
           <div className="flex justify-between mt-14">

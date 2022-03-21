@@ -7,7 +7,7 @@ function SkeletonDetailPost() {
       meta={
         <Meta
           description="Place to share your ideas with others"
-          title="How Website Works"
+          title="Medio - Loading content..."
         />
       }
     >
