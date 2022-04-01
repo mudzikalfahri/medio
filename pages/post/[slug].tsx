@@ -2,7 +2,6 @@ import Layout from "layouts/Layout";
 import { Meta } from "layouts/Meta";
 import { NextPage } from "next";
 import ReactMarkdown from "react-markdown";
-import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaWhatsapp } from "react-icons/fa";
 import SocialIcon from "@components/SocialIcon";
 import MiniPostCard from "@components/MiniPostCard";
@@ -10,7 +9,6 @@ import { getDetailData } from "@graphql/queries";
 import { timeAgo } from "@utils/dateformat";
 import SkeletonDetailPost from "@components/SkeletonDetailPost";
 import { useRouter } from "next/router";
-import Head from "next/head";
 
 const DetailPost: NextPage = () => {
   const router = useRouter();
