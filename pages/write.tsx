@@ -44,8 +44,8 @@ const Write: NextPage = () => {
       }
     >
       <div className="fixed w-full bg-white shadow-lg bottom-0 py-4 z-30 left-0">
-        <div className="max-w-5xl mx-auto flex justify-between items-center">
-          <p>
+        <div className="max-w-5xl mx-auto space-y-2 md:space-y-0 flex md:flex-row flex-col justify-between items-center px-4">
+          <p className="text-center text-sm md:text-md md:text-left">
             Start writing and the preview can be shown by clicking preview
             button
           </p>

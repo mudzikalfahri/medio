@@ -5,6 +5,7 @@ import { ADD_POST } from "@graphql/queries";
 import { BsCheck2Circle } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { GET_CATEGORY } from "@graphql/queries";
+import toast from "react-hot-toast";
 
 function PublishModal({
   close,
@@ -33,7 +34,12 @@ function PublishModal({
       thumbnail,
       authorId: session.id,
     };
-    addPost({ variables: variables });
+    const prom = addPost({ variables: variables });
+    toast.promise(prom, {
+      loading: "Uploading Article",
+      success: "Article Uploaded Successfully",
+      error: "Error Uploading Data",
+    });
   };
 
   return (

@@ -13,6 +13,7 @@ import { GiTerror } from "react-icons/gi";
 import { AiOutlineReload } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Home: NextPage = () => {
   const { data, loading, error } = getHomeData();
@@ -29,11 +30,11 @@ const Home: NextPage = () => {
     >
       <div className="max-w-6xl mx-auto flex px-4 min-h-screen">
         <div className="w-full md:w-2/3 pt-28 md:pr-10">
-          <div className="rounded-full mb-6 flex items-center py-4 bg-gray-100 justify-center space-x-3">
+          <div className="rounded-xl md:rounded-full mb-6 md:flex-row flex flex-col items-center py-4 bg-gray-100 justify-center space-x-3 space-y-4 md:space-y-0">
             <h3>Share your ideas with millions of readers</h3>
 
             <Link href="/write" passHref>
-              <div className="cursor-pointer py-1.5 px-4 bg-gray-800 text-white rounded-full text-sm">
+              <div className="cursor-pointer w-max py-1.5 px-4 bg-gray-800 text-white rounded-full text-sm">
                 Start Writing
               </div>
             </Link>

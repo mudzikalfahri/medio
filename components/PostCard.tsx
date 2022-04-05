@@ -19,16 +19,19 @@ const PostCard = ({ blog }: { blog: Post }) => {
   };
   return (
     <Link href={"/post/" + blog.id}>
-      <div onClick={viewDetail} className="flex space-x-4 mb-8 cursor-pointer">
-        <div className="w-1/3 overflow-hidden">
+      <div
+        onClick={viewDetail}
+        className="flex md:flex-row flex-col md:space-x-4 mb-8 cursor-pointer"
+      >
+        <div className="w-full md:w-1/3 overflow-hidden">
           <img
             src={blog.thumbnail}
             alt="pic"
             className="object-cover w-full h-full rounded-lg"
           />
         </div>
-        <div className="w-2/3">
-          <div className="flex items-center space-x-2">
+        <div className="w-full md:w-2/3">
+          <div className="flex items-center space-x-2 mt-3 md:mt-0">
             <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
               {blog.category.name}
             </div>

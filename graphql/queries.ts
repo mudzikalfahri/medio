@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import toast from "react-hot-toast";
 
 export const GET_HOME_DATA = gql`
   query {
@@ -97,6 +98,9 @@ export const GET_CATEGORY = gql`
 
 export const getHomeData = () => {
   const { data, error, loading, refetch, fetchMore } = useQuery(GET_HOME_DATA);
+  if (data) {
+    toast.success("Data Fetched Successfully");
+  }
   return { data, error, loading, refetch, fetchMore };
 };
 export const getDetailData = (slug) => {
