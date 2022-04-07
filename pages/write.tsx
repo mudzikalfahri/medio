@@ -99,7 +99,7 @@ const Write: NextPage = () => {
       {preview && <PreviewPost close={() => setPreview(false)} body={body} />}
       {publish && (
         <PublishModal
-          close={() => setPublish(false)}
+          close={() => setPublish((prev) => !prev)}
           body={body}
           session={data}
         />

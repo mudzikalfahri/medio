@@ -13,12 +13,14 @@ import { GiTerror } from "react-icons/gi";
 import { AiOutlineReload } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 const Home: NextPage = () => {
-  const { data, loading, error } = getHomeData();
+  const { data, loading, error, refetch } = getHomeData();
   const { data: session, status } = useSession();
   const router = useRouter();
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <Layout
       meta={

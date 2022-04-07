@@ -97,7 +97,10 @@ export const GET_CATEGORY = gql`
 `;
 
 export const getHomeData = () => {
-  const { data, error, loading, refetch, fetchMore } = useQuery(GET_HOME_DATA);
+  const { data, error, loading, refetch, fetchMore } = useQuery(GET_HOME_DATA, {
+    fetchPolicy: "cache-first",
+    errorPolicy: "ignore",
+  });
   if (data) {
     toast.success("Data Fetched Successfully");
   }

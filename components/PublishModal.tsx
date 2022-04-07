@@ -70,7 +70,10 @@ function PublishModal({
 
                 <Button
                   text="Go to Post"
-                  click={() => router.replace("/")}
+                  click={() => {
+                    close();
+                    router.push("/");
+                  }}
                   dark={true}
                 />
               </div>
