@@ -16,7 +16,11 @@ function PublishModal({
   body: string;
   session: any;
 }) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { data, loading, error: errorCategory } = useQuery(GET_CATEGORY);
   const [addPost, { data: dataMutate, loading: loadMutate, error }] =
     useMutation(ADD_POST);
@@ -107,7 +111,7 @@ function PublishModal({
                   </p>
                   <input
                     type="text"
-                    {...register("title", { required: true })}
+                    {...register("title", { required: true, minLength: 10 })}
                     placeholder="How Website Works"
                     className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
                   />
