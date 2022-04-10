@@ -114,7 +114,11 @@ function PublishModal({
                     type="text"
                     {...register("title", { required: true, minLength: 10 })}
                     placeholder="How Website Works"
-                    className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
+                    className={
+                      errors.title
+                        ? "input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full border-red-700 border rounded-xl bg-gray-100"
+                        : "input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
+                    }
                   />
                   {errors.title?.type === "minLength" && (
                     <p className="text-xs text-red-500 text-right">

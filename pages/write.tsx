@@ -92,7 +92,7 @@ const Write: NextPage = () => {
             placeholder="Tell your story"
             cols={30}
             rows={10}
-            className="border-none bg-gray-50 placeholder:text-lg pt-6 w-full min-h-screen focus-visible:outline-none outline-none"
+            className="border-none bg-gray-50 placeholder:text-lg pt-6 w-full min-h-screen"
           />
         </div>
       </div>
