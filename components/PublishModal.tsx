@@ -26,6 +26,7 @@ function PublishModal({
     useMutation(ADD_POST);
 
   const router = useRouter();
+  console.log(errors);
 
   const onSubmit = (data) => {
     const { title, categoryId, headline, minsRead, thumbnail } = data;
@@ -115,32 +116,53 @@ function PublishModal({
                     placeholder="How Website Works"
                     className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
                   />
+                  {errors.title?.type === "minLength" && (
+                    <p className="text-xs text-red-500 text-right">
+                      Title must be at least 10 characters
+                    </p>
+                  )}
+                  {errors.title?.type === "required" && (
+                    <p className="text-xs text-red-500 text-right">
+                      The title field is required
+                    </p>
+                  )}
                   <p className="self-start ml-1 text-sm mt-2 text-gray-500">
                     Category
                   </p>
                   <select
-                    defaultValue="default"
                     {...register("categoryId", { required: true })}
                     className="select[multiple] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 text-sm border-white focus:border rounded-xl bg-gray-100"
                   >
-                    <option value="default" disabled>
-                      Select your option
-                    </option>
                     {data.categories.map((each, idx) => (
                       <option key={idx} value={each.id}>
                         {each.name}
                       </option>
                     ))}
                   </select>
+                  {errors.categoryId?.type === "required" && (
+                    <p className="text-xs text-red-500 text-right">
+                      The category field is required
+                    </p>
+                  )}
                   <p className="self-start ml-1 text-sm mt-2 text-gray-500">
                     Headline
                   </p>
                   <textarea
-                    {...register("headline", { required: true })}
+                    {...register("headline", { required: true, minLength: 20 })}
                     placeholder="Summary of The Content"
-                    className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
+                    className="input[type='textarea'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
                   />
-                  <p className="self-start ml-1 text-sm mt-1 text-gray-500">
+                  {errors.headline?.type === "required" && (
+                    <p className="text-xs text-red-500 text-right">
+                      The headline field is required
+                    </p>
+                  )}
+                  {errors.headline?.type === "minLength" && (
+                    <p className="text-xs text-red-500 text-right">
+                      Headline must be at least 20 characters
+                    </p>
+                  )}
+                  <p className="self-start ml-1 text-sm mt-2 text-gray-500">
                     Time Takes to Read
                   </p>
                   <div className="flex items-center">
@@ -162,6 +184,11 @@ function PublishModal({
                     placeholder="https://image.com/image.jpeg"
                     className="input[type='text'] placeholder:text-sm placeholder:text-gray-400 w-full focus:border-purple-700 border-white focus:border rounded-xl bg-gray-100"
                   />
+                  {errors.thumbnail?.type === "required" && (
+                    <p className="text-xs text-red-500 text-right">
+                      The thumbnail field is required
+                    </p>
+                  )}
                   <div className="mx-1 flex space-x-2 self-start mt-5">
                     <input
                       type="checkbox"
