@@ -101,9 +101,6 @@ export const getHomeData = () => {
     fetchPolicy: "cache-first",
     errorPolicy: "ignore",
   });
-  if (data) {
-    toast.success("Data Fetched Successfully");
-  }
   return { data, error, loading, refetch, fetchMore };
 };
 export const getDetailData = (slug) => {
