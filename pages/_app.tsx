@@ -4,6 +4,14 @@ import "@styles/tailwind.css";
 import { SessionProvider } from "next-auth/react";
 import "@styles/global.css";
 import { Toaster } from "react-hot-toast";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import Router from "next/router";
+NProgress.configure({ showSpinner: false });
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
+
 const options = {
   // Define default options
   style: {
