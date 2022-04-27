@@ -40,13 +40,13 @@ const Home: NextPage = () => {
     >
       {modalLogin && <LoginModal close={() => setModalLogin(false)} />}
       <div className="max-w-4xl mx-auto flex px-4 min-h-screen pb-10">
-        <div className="w-full pt-28 md:pr-10">
+        <div className="w-full pt-28">
           <section className="bg-gray-50">
-            <div className="px-4 pt-4 pb-20 mx-auto lg:items-center lg:flex">
+            <div className="px-4 pt-4 pb-16 mx-auto lg:items-center lg:flex">
               <div className="max-w-xl mx-auto text-center">
                 <h1 className="text-3xl font-extrabold sm:text-5xl">
                   Share your ideas with
-                  <strong className="font-extrabold text-purple-700 sm:block">
+                  <strong className="font-extrabold text-purple-700 block">
                     millions of readers.
                   </strong>
                 </h1>
@@ -58,14 +58,14 @@ const Home: NextPage = () => {
 
                 <div className="flex flex-wrap justify-center gap-4 mt-8">
                   <a
-                    className="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 rounded shadow sm:w-auto active:bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring"
+                    className="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 rounded shadow sm:w-auto active:bg-purple-500 hover:rotate-2 focus:outline-none focus:ring duration-150"
                     href="/get-started"
                   >
                     Get Started
                   </a>
 
                   <a
-                    className="block w-full px-12 py-3 text-sm font-medium text-purple-600 rounded shadow sm:w-auto hover:text-purple-700 active:text-purple-500 focus:outline-none focus:ring"
+                    className="block w-full px-12 py-3 text-sm font-medium text-purple-600 rounded shadow sm:w-auto hover:rotate-2 duration-150 active:text-purple-500 focus:outline-none focus:ring"
                     href="/about"
                   >
                     Learn More
@@ -86,14 +86,14 @@ const Home: NextPage = () => {
           </div>
           {/* Menu bar */}
           <div className="border-b border-gray-200 flex items-center">
-            <div className="py-2 px-5 border-b border-purple-700 font-semibold w-max">
+            <div className="py-2 px-5 border-b-2 border-purple-600 font-semibold w-max">
               Recomended
             </div>
             <div className="py-2 px-5 w-max">Popular</div>
             <div className="py-2 px-5 w-max">Today</div>
           </div>
           {/* Post */}
-          <div className="pt-8 grid-cols-2 grid gap-6">
+          <div className="pt-8 grid-cols-1 sm:grid-cols-2 grid gap-6">
             {error && (
               <div className="flex flex-col text-gray-500 items-center pt-10 space-y-1.5">
                 <GiTerror className="text-4xl" />
@@ -113,7 +113,6 @@ const Home: NextPage = () => {
               data?.posts.map((blog, idx) => (
                 <PostCard key={idx} blog={blog} />
               ))}
-
             {loading && (
               <>
                 <PostCardSkel />

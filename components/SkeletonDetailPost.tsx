@@ -11,8 +11,8 @@ function SkeletonDetailPost() {
         />
       }
     >
-      <div className="max-w-6xl mx-auto min-h-screen pt-24 pb-10">
-        <div className="w-2/3">
+      <div className="max-w-3xl mx-auto min-h-screen pt-24 pb-10">
+        <div className="w-full">
           <div className="w-28 h-10 bg-gray-200 animate-pulse rounded-full mb-6"></div>
           <div className="w-full h-8 bg-gray-200 animate-pulse rounded-full mb-4"></div>
           <div className="w-2/3 h-8 bg-gray-200 animate-pulse rounded-full mb-6"></div>

@@ -95,7 +95,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
         </div>
       </div> */}
       <a
-        className="relative block hover:rotate-2 hover:shadow-sm duration-150 p-8 overflow-hidden border border-gray-200 rounded-lg"
+        className="relative block hover:rotate-2 hover:shadow-sm duration-150 p-6 overflow-hidden border border-gray-200 rounded-lg"
         href=""
       >
         <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-blue-300 via-indigo-500 to-purple-600"></span>
@@ -110,7 +110,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
 
           <div className="flex-shrink-0 hidden ml-3 sm:block">
             <img
-              className="object-cover w-16 h-16 rounded-lg shadow-sm"
+              className="object-cover w-14 h-14 rounded-lg shadow-sm"
               src={blog.author.image}
               alt=""
             />
@@ -118,7 +118,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
         </div>
 
         <div className="mt-4 sm:pr-8">
-          <p className="text-sm text-gray-500 line-clamp-3">{blog.headline}</p>
+          <p className="text-sm text-gray-500 line-clamp-2">{blog.headline}</p>
         </div>
 
         <dl className="flex mt-6">
