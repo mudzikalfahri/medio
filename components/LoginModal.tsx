@@ -7,7 +7,7 @@ import { GrFormClose } from "react-icons/gr";
 const LoginModal = ({ close }) => {
   return (
     <div className="top-0 left-0 flex items-center justify-center w-full h-screen overflow-y-auto fixed bg-gray-800/40 z-30 ">
-      <div className="w-2/5 py-4 pb-10 px-8 flex flex-col items-center bg-white rounded-lg">
+      <div className="w-2/5 animate-mod duration-200 py-4 pb-10 px-8 flex flex-col items-center bg-white rounded-lg">
         <div className="flex w-full justify-end">
           <div
             onClick={close}
