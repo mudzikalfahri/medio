@@ -11,7 +11,7 @@ const Header = () => {
   const { data, status } = useSession();
   return (
     <header className="fixed text-gray-800 top-0 left-0 py-3 w-full shadow-md shadow-gray-400/10 z-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+      <div className="max-w-4xl mx-auto px-4 flex items-center justify-between">
         <Link href="/">
           <div className="logo flex items-center space-x-1 cursor-pointer">
             <svg

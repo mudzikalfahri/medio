@@ -24,8 +24,8 @@ const DetailPost: NextPage = () => {
         />
       }
     >
-      <div className="max-w-6xl mx-auto min-h-screen grid grid-cols-7">
-        <div className="col-span-5 pt-24 pr-16 pl-4">
+      <div className="max-w-3xl mx-auto min-h-screen">
+        <div className="pt-24">
           <div className="mx-auto">
             <h2 className="text-purple-700 mb-2 py-1.5 px-4 bg-purple-100 w-max rounded-full">
               {data.post.category.name}
@@ -72,7 +72,7 @@ const DetailPost: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-2 min-h-screen border-l border-gray-200 pt-24 pl-6">
+        {/* <div className="col-span-2 min-h-screen border-l border-gray-200 pt-24 pl-6">
           <div className="mb-4 sticky top-24">
             <h1 className="font-semibold">Related Posts</h1>
             <div className="py-6 flex flex-col space-y-6">
@@ -83,7 +83,7 @@ const DetailPost: NextPage = () => {
               See all (6)
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );
