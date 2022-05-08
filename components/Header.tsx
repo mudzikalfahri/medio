@@ -3,6 +3,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import Button from "./Button";
 import Link from "next/link";
 
@@ -90,7 +91,9 @@ const Header = () => {
           </div>
 
           {status !== "loading" ? (
-            !data && <Button dark={true} text="Login" />
+            !data && (
+              <Button click={() => signIn("github")} dark={true} text="Login" />
+            )
           ) : (
             <div className="bg-gray-200 animate-pulse w-16 ml-2 h-10 rounded-full"></div>
           )}
