@@ -95,43 +95,52 @@ const PostCard = ({ blog }: { blog: Post }) => {
         </div>
       </div> */}
       <a
-        className="relative block hover:rotate-2 hover:shadow-sm duration-150 p-6 overflow-hidden border border-gray-200 rounded-lg"
+        className="relative block hover:shadow-sm duration-150 overflow-hidden border border-gray-200 rounded-xl"
         href=""
       >
-        <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-blue-300 via-indigo-500 to-purple-600"></span>
+        <img className="h-32 w-full object-cover" src={blog.thumbnail} alt="" />
+        <div className="p-5">
+          <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-blue-300 via-indigo-500 to-purple-600"></span>
 
-        <div className="justify-between sm:flex">
-          <div>
-            <h5 className="text-xl font-bold text-gray-900">{blog.title}</h5>
-            <p className="mt-1 text-xs font-medium text-gray-600">
-              By {blog.author.name}
+          <div className="justify-between sm:flex">
+            <div>
+              <h5 className="text-xl font-bold text-gray-900">{blog.title}</h5>
+              <p className="mt-1 text-xs font-medium text-gray-600">
+                By {blog.author.name}
+              </p>
+            </div>
+
+            <div className="flex-shrink-0 hidden ml-3 sm:block">
+              <img
+                className="object-cover w-10 h-10 rounded-lg shadow-sm"
+                src={blog.author.image}
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div className="mt-4 sm:pr-8">
+            <p className="text-sm text-gray-500 line-clamp-2">
+              {blog.headline}
             </p>
           </div>
 
-          <div className="flex-shrink-0 hidden ml-3 sm:block">
-            <img
-              className="object-cover w-14 h-14 rounded-lg shadow-sm"
-              src={blog.author.image}
-              alt=""
-            />
-          </div>
+          <dl className="flex mt-6">
+            <div className="flex flex-col-reverse">
+              <dt className="text-sm font-medium text-gray-600">Published</dt>
+              <dd className="text-xs text-gray-500">
+                {timeAgo(blog.createdAt)}
+              </dd>
+            </div>
+
+            <div className="flex flex-col-reverse ml-3 sm:ml-6">
+              <dt className="text-sm font-medium text-gray-600">
+                Reading time
+              </dt>
+              <dd className="text-xs text-gray-500">{blog.minsRead} minute</dd>
+            </div>
+          </dl>
         </div>
-
-        <div className="mt-4 sm:pr-8">
-          <p className="text-sm text-gray-500 line-clamp-2">{blog.headline}</p>
-        </div>
-
-        <dl className="flex mt-6">
-          <div className="flex flex-col-reverse">
-            <dt className="text-sm font-medium text-gray-600">Published</dt>
-            <dd className="text-xs text-gray-500">{timeAgo(blog.createdAt)}</dd>
-          </div>
-
-          <div className="flex flex-col-reverse ml-3 sm:ml-6">
-            <dt className="text-sm font-medium text-gray-600">Reading time</dt>
-            <dd className="text-xs text-gray-500">{blog.minsRead} minute</dd>
-          </div>
-        </dl>
       </a>
     </Link>
   );
