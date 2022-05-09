@@ -98,7 +98,47 @@ const PostCard = ({ blog }: { blog: Post }) => {
         className="relative block hover:shadow-sm duration-150 overflow-hidden border border-gray-200 rounded-xl"
         href=""
       >
-        <img className="h-32 w-full object-cover" src={blog.thumbnail} alt="" />
+        <div
+          className="h-44 w-full p-2 object-cover flex flex-col justify-between"
+          style={{
+            background: `url(${blog.thumbnail})`,
+            backgroundSize: "cover",
+            filter: "brightness(85%) grayscale(20%)",
+          }}
+        >
+          <div className="flex justify-end">
+            <div className="px-1.5 text-sm font-semibold flex items-center py-0.5 rounded-md bg-white/80">
+              <span>
+                <svg
+                  className="w-4 h-4 mr-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+              </span>
+              {blog.views} views
+            </div>
+          </div>
+          <div className="flex justify-start">
+            <div className="px-2 text-sm font-semibold flex items-center py-0.5 rounded-md bg-white/80">
+              {blog.category.name}
+            </div>
+          </div>
+        </div>
         <div className="p-5">
           <span className="absolute inset-x-0 bottom-0 h-2  bg-gradient-to-r from-blue-300 via-indigo-500 to-purple-600"></span>
 
