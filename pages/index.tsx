@@ -42,7 +42,7 @@ const Home: NextPage = () => {
       <div className="max-w-4xl mx-auto flex px-4 min-h-screen pb-10">
         <div className="w-full pt-28">
           <section className="">
-            <div className="px-4 pt-4 pb-16 mx-auto lg:items-center lg:flex">
+            <div className="px-4 pt-4 pb-12 mx-auto lg:items-center lg:flex">
               <div className="max-w-xl mx-auto text-center">
                 <h1 className="text-3xl font-extrabold sm:text-5xl">
                   Share your ideas with
@@ -55,22 +55,6 @@ const Home: NextPage = () => {
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Nesciunt illo tenetur fuga ducimus numquam ea!
                 </p>
-
-                <div className="flex flex-wrap justify-center gap-4 mt-8">
-                  <a
-                    className="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 rounded-full shadow sm:w-auto active:bg-purple-500 hover:rotate-2 focus:outline-none focus:ring duration-150"
-                    href="/get-started"
-                  >
-                    Get Started
-                  </a>
-
-                  <a
-                    className="block w-full px-12 py-3 text-sm font-medium text-purple-600 rounded-full shadow sm:w-auto hover:rotate-2 duration-150 active:text-purple-500 focus:outline-none focus:ring"
-                    href="/about"
-                  >
-                    Learn More
-                  </a>
-                </div>
               </div>
             </div>
           </section>

@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client";
 import { Post } from "@interfaces/index";
 import { timeAgo } from "@utils/dateformat";
 import { gql } from "apollo-server-micro";
+import Image from "next/image";
 import Link from "next/link";
 
 const ADD_VIEWS = gql`
@@ -19,17 +20,80 @@ const PostCard = ({ blog }: { blog: Post }) => {
   };
   return (
     <Link href={"/post/" + blog.id}>
+      <article className="p-6 bg-white rounded-xl ring ring-indigo-50">
+        <div className="flex items-start">
+          <div className="">
+            <div className="flex sm:flex-row flex-col items-center justify-between">
+              <div className="rounded-full border w-max border-purple-700 bg-purple-700 px-3 py-1 text-[10px] font-medium text-white">
+                {blog.category.name}
+              </div>
+              <div className="text-xs mt-2 sm:mt-0 font-medium text-gray-500 flex items-center space-x-1">
+                <img
+                  src={blog.author.image}
+                  className="w-6 h-6 rounded-full object-cover"
+                  alt=""
+                />
+                <p>Posted by </p>
+                <a href="" className="underline hover:text-gray-700">
+                  {blog.author.name}
+                </a>
+              </div>
+            </div>
+
+            <h2 className="mt-4 text-lg font-medium sm:text-xl">
+              <a href="" className="hover:underline">
+                {" "}
+                {blog.title}{" "}
+              </a>
+            </h2>
+
+            <p className="mt-1 line-clamp-3 text-sm text-gray-700">
+              {blog.headline}
+            </p>
+
+            <div className="mt-4 flex-col sm:flex-row text-center md:text-left sm:flex sm:items-center sm:gap-2">
+              <div className="flex justify-center mb-2 sm:mb-0 sm:justify-start items-center text-gray-500">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <p className="ml-1 text-xs font-medium">
+                  {blog.minsRead} minutes read
+                </p>
+              </div>
+
+              <span className="hidden sm:block" aria-hidden="true">
+                &middot;
+              </span>
+              <p className="ml-1 text-gray-500 text-xs font-medium">
+                {timeAgo(blog.createdAt)}
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
       {/* <div
         onClick={viewDetail}
         className="flex md:flex-row flex-col md:space-x-4 mb-8 cursor-pointer"
       >
-        <div className="w-full md:w-1/3 overflow-hidden">
+        <div className="w-1/3">
           <img
             src={blog.thumbnail}
             alt="pic"
-            className="object-cover w-full h-full rounded-lg"
+            className="object-cover aspect-square rounded-lg"
           />
         </div>
+
         <div className="w-full md:w-2/3">
           <div className="flex items-center space-x-2 mt-3 md:mt-0">
             <div className="py-1.5 px-3 rounded-full cursor-pointer hover:bg-purple-100 duration-150 bg-purple-50 w-max text-purple-700 text-xs">
@@ -41,9 +105,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
             <p className="text-xs text-gray-500">{blog.views} Views</p>
           </div>
           <h1 className="text-2xl font-bold mt-1">{blog.title}</h1>
-          <p className="text-sm mt-2 text-gray-500 line-clamp-4">
-            {blog.headline}
-          </p>
+
           <div className="flex items-end justify-between mt-3">
             <div className="flex items-center space-x-3">
               <img
@@ -94,7 +156,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
           </div>
         </div>
       </div> */}
-      <a
+      {/* <a
         className="relative block hover:shadow-sm duration-150 overflow-hidden border border-gray-200 rounded-xl"
         href=""
       >
@@ -181,7 +243,7 @@ const PostCard = ({ blog }: { blog: Post }) => {
             </div>
           </dl>
         </div>
-      </a>
+      </a> */}
     </Link>
   );
 };
